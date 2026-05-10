@@ -1,0 +1,21 @@
+# Secrets
+.env
+
+# Data files
+*.db
+*.pkl
+
+# Output files
+*.csv
+*.png
+*.txt
+
+# Generated directories
+logs/
+results/
+models/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
