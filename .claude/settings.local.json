@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(py -3.12 -c \"from dotenv import load_dotenv; print\\('dotenv OK'\\)\")",
+      "Bash(py -3.12 -m pip install python-dotenv --break-system-packages)",
+      "Bash(py -3.12 -m pip install python-dotenv)",
+      "Bash(py -3.12 -m pip install python-dotenv --user)",
+      "Bash(py -3.12 -c \"from dotenv import load_dotenv; import os; load_dotenv\\(\\); print\\('API KEY set:', bool\\(os.getenv\\('BINANCE_API_KEY'\\)\\)\\)\")",
+      "Bash(py -3.12 crypto_trader.py --once)",
+      "Bash(py -3.12 -m pip install ccxt websocket-client)",
+      "Bash(py -3.12 -c ' *)",
+      "Bash(py -3.12 crypto_ml.py)",
+      "Bash(py -3.12 crypto_status.py)",
+      "Bash(python -c \"import os; st=os.stat\\('loop_trader.py'\\); import datetime; print\\('loop_trader.py mtime:', datetime.datetime.fromtimestamp\\(st.st_mtime\\)\\)\")",
+      "Bash(python -c \"import os; st=os.stat\\('viop_trader.py'\\); import datetime; print\\('viop_trader.py mtime:', datetime.datetime.fromtimestamp\\(st.st_mtime\\)\\)\")",
+      "Bash(py -3.12 -c \"import ast; ast.parse\\(open\\('crypto_stream.py'\\).read\\(\\)\\); print\\('Syntax OK'\\)\")"
+    ]
+  }
+}

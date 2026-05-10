@@ -1,0 +1,306 @@
+XGBoost: 3.2.0 OK
+LightGBM: 4.6.0 OK
+CatBoost: 1.2.10 OK
+============================================================
+BIST ML Modeli — XGBoost + LightGBM + CatBoost Ensemble (2-of-3 vote)
+Egitim: 2022-2023  |  Test: 2024-2026 (model görmedi)
+Hedef : 3 günde +-2.0% hareket tahmini
+============================================================
+
+Veri yükleniyor...
+  YKBNK   : 1204 gün yüklendi
+  AKBNK   : 1204 gün yüklendi
+  ISCTR   : 1204 gün yüklendi
+  GARAN   : 1204 gün yüklendi
+  TUPRS   : 1204 gün yüklendi
+  PETKM   : 1204 gün yüklendi
+  TAVHL   : 1204 gün yüklendi
+  FROTO   : 1204 gün yüklendi
+  TCELL   : 1204 gün yüklendi
+  ASELS   : 1204 gün yüklendi
+  BIMAS   : 1204 gün yüklendi
+  MGROS   : 1204 gün yüklendi
+  ENKAI   : 1204 gün yüklendi
+  EKGYO   : 1204 gün yüklendi
+  THYAO   : 1204 gün yüklendi
+  EREGL   : 1204 gün yüklendi
+  KCHOL   : 1201 gün yüklendi
+  SAHOL   : 1201 gün yüklendi
+  SISE    : 1201 gün yüklendi
+  TOASO   : 1201 gün yüklendi
+  ARCLK   : 1201 gün yüklendi
+  VESTL   : 1056 gün yüklendi
+  KRDMD   : 1056 gün yüklendi
+  PGSUS   : 1056 gün yüklendi
+  ODAS    : 1056 gün yüklendi
+  GUBRF   : 1056 gün yüklendi
+  CIMSA   : 1056 gün yüklendi
+  LOGO    : 1056 gün yüklendi
+  NETAS   : 1056 gün yüklendi
+  macro_data: 519 gun (2024-04-24 - 2026-04-24)
+
+Feature engineering...
+  YKBNK   : 1204 gün  AL:523  SAT:419  BEKLE:262
+  AKBNK   : 1204 gün  AL:526  SAT:406  BEKLE:272
+  ISCTR   : 1204 gün  AL:510  SAT:418  BEKLE:276
+  GARAN   : 1204 gün  AL:514  SAT:398  BEKLE:292
+  TUPRS   : 1204 gün  AL:491  SAT:387  BEKLE:326
+  PETKM   : 1204 gün  AL:453  SAT:431  BEKLE:320
+  TAVHL   : 1204 gün  AL:495  SAT:425  BEKLE:284
+  FROTO   : 1204 gün  AL:457  SAT:415  BEKLE:332
+  TCELL   : 1204 gün  AL:478  SAT:422  BEKLE:304
+  ASELS   : 1204 gün  AL:530  SAT:411  BEKLE:263
+  BIMAS   : 1204 gün  AL:481  SAT:392  BEKLE:331
+  MGROS   : 1204 gün  AL:506  SAT:403  BEKLE:295
+  ENKAI   : 1204 gün  AL:505  SAT:386  BEKLE:313
+  EKGYO   : 1204 gün  AL:521  SAT:435  BEKLE:248
+  THYAO   : 1204 gün  AL:478  SAT:399  BEKLE:327
+  EREGL   : 1204 gün  AL:429  SAT:417  BEKLE:358
+  KCHOL   : 1201 gün  AL:482  SAT:413  BEKLE:306
+  SAHOL   : 1201 gün  AL:482  SAT:409  BEKLE:310
+  SISE    : 1201 gün  AL:456  SAT:414  BEKLE:331
+  TOASO   : 1201 gün  AL:497  SAT:408  BEKLE:296
+  ARCLK   : 1201 gün  AL:434  SAT:431  BEKLE:336
+  VESTL   : 1056 gün  AL:416  SAT:438  BEKLE:202
+  KRDMD   : 1056 gün  AL:415  SAT:418  BEKLE:223
+  PGSUS   : 1056 gün  AL:422  SAT:402  BEKLE:232
+  ODAS    : 1056 gün  AL:432  SAT:415  BEKLE:209
+  GUBRF   : 1056 gün  AL:439  SAT:395  BEKLE:222
+  CIMSA   : 1056 gün  AL:456  SAT:375  BEKLE:225
+  LOGO    : 1056 gün  AL:452  SAT:389  BEKLE:215
+  NETAS   : 1056 gün  AL:439  SAT:425  BEKLE:192
+
+Toplam: 29 hisse yüklendi
+
+[ROUND 1] Initial walk-forward (all features)...
+
+============================================================
+Walk-Forward Cross Validation [XGBoost+LightGBM+CatBoost Ensemble (2-of-3 vote)]
+  6 pencere x (egitim 60% / kalibrasyon 20% / test 20%)
+============================================================
+  Pencere 1: 2528 egitim / 1136 kalibr. / 1120 test  Trade:390  BUY precision:98.5%  Coverage:34.8%
+  Pencere 2: 2765 egitim / 1128 kalibr. / 1120 test  Trade:312  BUY precision:55.0%  Coverage:27.9%
+  Pencere 3: 2672 egitim / 1128 kalibr. / 1128 test  Trade:95  BUY precision:75.0%  Coverage:8.4%
+  Pencere 4: 2616 egitim / 1120 kalibr. / 1112 test  Trade:278  BUY precision:74.6%  Coverage:25.0%
+  Pencere 5: 2487 egitim / 1144 kalibr. / 1136 test  Trade:549  BUY precision:77.8%  Coverage:48.3%
+  Pencere 6: 2378 egitim / 1056 kalibr. / 1049 test  Trade:445  BUY precision:58.2%  Coverage:42.4%
+
+  Ortalama BUY precision : 73.2%  (6/6 pencere ticarette)
+  Ortalama coverage      : 31.1%
+
+============================================================
+Ana Model: 2022-2023 Egitim -> 2024-2026 Test
+(Model test verisini hiç görmedi)
+============================================================
+  Egitim : 9499 ornek  ({1.0: 5205, -1.0: 4294})
+  Kalibr.: 3142 ornek  ({1.0: 1765, -1.0: 1377})
+  Test   : 12974 ornek  ({1.0: 6749, -1.0: 6225})
+
+  Egitim basliyor... OK
+
+  -- Test Sonuclari (2024-2026, hic gorulmedi) --
+  Binary genel dogruluk: 59.7%
+
+              precision    recall  f1-score   support
+
+     SAT(-1)       0.65      0.35      0.46      6225
+      AL(+1)       0.58      0.82      0.68      6749
+
+    accuracy                           0.60     12974
+   macro avg       0.61      0.59      0.57     12974
+weighted avg       0.61      0.60      0.57     12974
+
+
+  -- Traded-only policy (calibrated + no-trade zone) --
+  BUY threshold : 76.0%
+  SELL threshold: 76.0%
+  Trade sayisi  : 4107  (coverage 23.0%)
+  BUY precision : 74.4%  Neutral rate: 20.1%
+  SELL precision: 85.4%  Neutral rate: 12.7%
+
+============================================================
+XGB+LGB+CAT Ensemble (2-of-3 vote) — ALL Features (XGB gain)
+============================================================
+
+  Rank  Feature                     Gain  Bar
+  -----------------------------------------------------------------
+  1     above_ema200              0.1243  ############################
+  2     ret_20d                   0.0923  ####################
+  3     price_ema200              0.0609  #############
+  4     trend_str_20              0.0477  ##########
+  5     bb_pos                    0.0389  ########
+  6     strongest_sector_5d       0.0343  ####### [MACRO]
+  7     mtf_trend                 0.0269  ######
+  8     price_pos_52w             0.0264  #####
+  9     ema_21_50                 0.0259  #####
+  10    trend_str_10              0.0237  #####
+  11    ret_10d                   0.0231  #####
+  12    atr_ratio                 0.0217  ####
+  13    dist_52w_high             0.0209  ####
+  14    macd_hist                 0.0205  ####
+  15    gap                       0.0203  ####
+  16    rsi_above50               0.0199  ####
+  17    ret_1d                    0.0197  ####
+  18    tcell_ret_1d              0.0189  ####
+  19    ret_5d                    0.0186  ####
+  20    rsi_delta                 0.0184  ####
+  21    ema_8_21                  0.0179  ####
+  22    day_of_week               0.0176  ###
+  23    bb_squeeze                0.0175  ###
+  24    macd_above0               0.0173  ###
+  25    rsi                       0.0157  ###
+  26    ret_3d                    0.0153  ###
+  27    dist_52w_low              0.0152  ###
+  28    buying_pressure           0.0146  ###
+  29    atr_pct                   0.0139  ###
+  30    ema_50_200                0.0134  ###
+  31    vol_spike_20d             0.0124  ##
+  32    mkt_beta_20               0.0122  ##
+  33    vol_ratio                 0.0121  ##
+  34    atr_regime_high           0.0118  ##
+  35    sector_mom_5d             0.0113  ##
+  36    obv_slope                 0.0104  ##
+  37    consec_down               0.0103  ##
+  38    vol_trend                 0.0103  ##
+  39    above_sma20               0.0101  ##
+  40    bb_width                  0.0101  ##
+  41    high_low_pct              0.0097  ##
+  42    consec_up                 0.0091  ##
+  43    close_pos                 0.0085  #
+  44    usdtry_1d_return          0.0000   [MACRO]
+  45    brent_5d_return           0.0000   [MACRO]
+  46    brent_1d_return           0.0000   [MACRO]
+  47    usdtry_above_20ma         0.0000   [MACRO]
+  48    usdtry_5d_return          0.0000   [MACRO]
+  49    golden_cross              0.0000  
+  50    news_count                0.0000  
+  51    sentiment_score           0.0000  
+  52    macd_cross                0.0000  
+  53    above_upper               0.0000  
+  54    below_lower               0.0000  
+  55    tcmb_rate                 0.0000   [MACRO]
+
+  -- MACRO FEATURE GAIN SUMMARY --
+  Feature                     Gain    Rank  Decision
+  ------------------------------------------------------------
+  usdtry_1d_return          0.0000      44/55  DROP (gain < 0.01)
+  usdtry_5d_return          0.0000      48/55  DROP (gain < 0.01)
+  usdtry_above_20ma         0.0000      47/55  DROP (gain < 0.01)
+  brent_1d_return           0.0000      46/55  DROP (gain < 0.01)
+  brent_5d_return           0.0000      45/55  DROP (gain < 0.01)
+  tcmb_rate                 0.0000      55/55  DROP (gain < 0.01)
+  strongest_sector_5d       0.0343       6/55  KEEP (pinned — known good)
+
+[FEATURE SEL] Dropping 6 weak macro feature(s): ['usdtry_1d_return', 'usdtry_5d_return', 'usdtry_above_20ma', 'brent_1d_return', 'brent_5d_return', 'tcmb_rate']
+
+[ROUND 2] Retrain after feature selection...
+
+============================================================
+Walk-Forward Cross Validation [XGBoost+LightGBM+CatBoost Ensemble (2-of-3 vote)]
+  6 pencere x (egitim 60% / kalibrasyon 20% / test 20%)
+============================================================
+  Pencere 1: 2528 egitim / 1136 kalibr. / 1120 test  Trade:440  BUY precision:97.9%  Coverage:39.3%
+  Pencere 2: 2765 egitim / 1128 kalibr. / 1120 test  Trade:312  BUY precision:53.2%  Coverage:27.9%
+  Pencere 3: 2672 egitim / 1128 kalibr. / 1128 test  Trade:106  BUY precision:72.9%  Coverage:9.4%
+  Pencere 4: 2616 egitim / 1120 kalibr. / 1112 test  Trade:241  BUY precision:78.3%  Coverage:21.7%
+  Pencere 5: 2487 egitim / 1144 kalibr. / 1136 test  Trade:458  BUY precision:100.0%  Coverage:40.3%
+  Pencere 6: 2378 egitim / 1056 kalibr. / 1049 test  Trade:482  BUY precision:60.4%  Coverage:45.9%
+
+  Ortalama BUY precision : 77.1%  (6/6 pencere ticarette)
+  Ortalama coverage      : 30.7%
+
+============================================================
+Ana Model: 2022-2023 Egitim -> 2024-2026 Test
+(Model test verisini hiç görmedi)
+============================================================
+  Egitim : 9499 ornek  ({1.0: 5205, -1.0: 4294})
+  Kalibr.: 3142 ornek  ({1.0: 1765, -1.0: 1377})
+  Test   : 12974 ornek  ({1.0: 6749, -1.0: 6225})
+
+  Egitim basliyor... OK
+
+  -- Test Sonuclari (2024-2026, hic gorulmedi) --
+  Binary genel dogruluk: 62.5%
+
+              precision    recall  f1-score   support
+
+     SAT(-1)       0.59      0.72      0.65      6225
+      AL(+1)       0.67      0.54      0.60      6749
+
+    accuracy                           0.62     12974
+   macro avg       0.63      0.63      0.62     12974
+weighted avg       0.63      0.62      0.62     12974
+
+
+  -- Traded-only policy (calibrated + no-trade zone) --
+  BUY threshold : 76.0%
+  SELL threshold: 79.0%
+  Trade sayisi  : 4143  (coverage 23.2%)
+  BUY precision : 75.0%  Neutral rate: 20.6%
+  SELL precision: 81.5%  Neutral rate: 16.7%
+  Round 2 WF BUY precision: 77.1%  coverage: 30.7%  features: 49
+
+============================================================
+FEATURE SELECTION COMPARISON
+============================================================
+  Before macro (baseline) : 48 features  |  77.0% WF BUY precision
+  After macro added       : 55 features  |  73.2% WF precision  31.1% coverage
+  After fix (final)       : 49 features  |  77.1% WF precision  30.7% coverage
+  Precision delta         : +3.9pp
+  L1 regularization       : XGB reg_alpha=0.2  LGB reg_alpha=0.2  (>= 0.1 requested)
+============================================================
+
+============================================================
+BUGÜNKÜ SİNYALLER (gerçek veriye göre)
+============================================================
+  SEM      SİNYAL    GÜVEN    FİYAT    RSI   TREND
+  -------------------------------------------------------
+  YKBNK    BEKLE     63.2%     37.94   44.4   YUKARI
+  AKBNK    BEKLE     76.7%     79.25   44.9   YUKARI
+  ISCTR    BEKLE     76.7%     14.79   37.4   YUKARI
+  GARAN    BEKLE     63.2%    139.40   37.8   YUKARI
+  TUPRS    BEKLE     63.2%    263.00   70.0   YUKARI
+  PETKM    BEKLE     76.7%     23.00   76.5   YUKARI
+  TAVHL    BEKLE     63.2%    308.25   36.5    YATAY
+  FROTO    BEKLE     61.8%    102.30   37.1    YATAY
+  TCELL    BEKLE     76.7%    114.10   44.6   YUKARI
+  ASELS    BEKLE     76.7%    396.50   81.9   YUKARI
+  BIMAS    BEKLE     76.7%    763.00   69.0   YUKARI
+  MGROS    BEKLE     76.7%    657.50   48.4   YUKARI
+  ENKAI    BEKLE     63.2%    106.80   65.0   YUKARI
+  EKGYO    BEKLE     61.8%     21.16   32.7    YATAY
+  THYAO    BEKLE     76.7%    323.50   51.3   YUKARI
+  EREGL    BEKLE     70.0%     32.60   67.2   YUKARI
+  KCHOL    BEKLE     76.7%    204.90   57.3   YUKARI
+  SAHOL    BEKLE     63.2%     98.90   59.9   YUKARI
+  SISE     BEKLE     63.2%     47.40   60.0   YUKARI
+  TOASO    BEKLE     61.8%    293.00   56.8   YUKARI
+  ARCLK    BEKLE     51.0%    115.20   57.2    YATAY
+  VESTL    AL  ^     85.1%     28.58   49.5    ASAGI
+  KRDMD    BEKLE     70.0%     36.16   73.0   YUKARI
+  PGSUS    BEKLE     59.2%    190.20   55.6    YATAY
+  ODAS     BEKLE     63.2%      6.84   63.6   YUKARI
+  GUBRF    BEKLE     63.2%    516.50   60.9   YUKARI
+  CIMSA    BEKLE     76.7%     56.30   66.8   YUKARI
+  LOGO     BEKLE     51.0%    139.00   53.9    YATAY
+  NETAS    BEKLE     51.4%     62.95   60.4    YATAY
+
+============================================================
+ÖZET VE DEĞERLENDİRME
+============================================================
+
+  Walk-Forward: GUCLU - traded BUY quality iyi
+  %77.1 BUY precision
+
+  Bugün yüksek güvenli AL  sinyali: 1 hisse
+    VESTL    28.58 TL  güven: 85.1%
+  Bugün yüksek güvenli SAT sinyali: 0 hisse
+
+  Sonraki adım:
+  -> Daha fazla hisse ekle veya feature engineering geliştir
+
+  Ensemble (XGB+LGB+CAT 2-of-3) modeli kaydedildi: /Users/kayahankocaoglan/Desktop/CS/Trade/models/xgb_model.pkl
+
+Toplam süre: 16.2s
+
+Sonraki adım: py -3.12 paper_trade.py

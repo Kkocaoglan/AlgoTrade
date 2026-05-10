@@ -1,0 +1,22 @@
+MAJORAFTER REPORT 2026-05-06
+============================================================
+Start equity      : 10024.11 USDT
+Daily target      : 10174.48 USDT (+1.5%)
+Locked            : YES
+Locked at         : 2026-05-06T10:00:29.644324+00:00
+Lock reason       : daily_major_target_hit
+Locked equity     : 10227.97 USDT
+Actual major gain : +203.86 USDT (+2.03%)
+
+Post-lock shadow book (capital frozen at locked equity):
+Closed trades     : 2
+Open trades       : 1
+Shadow total P&L  : -146.11 USDT (-1.43%)
+Hypothetical equity: 10081.86 USDT
+
+Closed shadow trades:
+- SUI/USDT LONG | entry=1.0328 exit=0.9856 | pnl=-93.49 USDT (-4.57%) | reason=stop_loss
+- SOL/USDT LONG | entry=89.8000 exit=87.4900 | pnl=-52.62 USDT (-2.57%) | reason=stop_loss
+
+Open shadow trades:
+- BNB/USDT LONG | entry=655.4500 size=2045.59 USDT | stop=641.0301 target=671.1808

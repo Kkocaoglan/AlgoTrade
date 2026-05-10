@@ -1,0 +1,12 @@
+
+=== 18:56:35 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 22:00:07 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 22:01:08 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula

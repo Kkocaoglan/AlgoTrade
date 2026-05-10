@@ -1,0 +1,20 @@
+BIST 3-Bot — Optimize Edilmiş Parametreler
+==================================================
+
+S1 MTF Momentum:
+  RSI penceresi : 40 - 70
+  ATR çarpanı   : 2.5×
+  Max pozisyon  : 5
+  Test Sharpe   : 0.00
+  Test DD       : 0.0%
+
+S3 BB Breakout:
+  BB periyot    : 15
+  BB std        : 1.5×
+  Vol threshold : 2.0×
+  ATR çarpanı   : 2.0×
+  Test Sharpe   : 1.29
+  Test DD       : -6.3%
+
+S2 → Trend Momentum stratejisine geçildi
+backtest_v2.py'de tüm güncellenmiş stratejiler çalışır.

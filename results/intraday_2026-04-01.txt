@@ -1,0 +1,92 @@
+[10:23:05] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:28:07] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:33:09] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:38:10] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:43:12] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:48:13] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:53:14] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[10:58:16] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:03:17] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:08:19] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:13:20] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:18:22] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:18:24] [ALERT] GARAN LONG intragün -1.60% | Simdi:129.40 | P&L:+344 TL
+[11:23:24] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:23:25] [ALERT] GARAN LONG intragün -1.52% | Simdi:129.50 | P&L:+356 TL
+[11:28:25] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:28:27] [ALERT] GARAN LONG intragün -1.75% | Simdi:129.20 | P&L:+320 TL
+[11:33:27] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:33:28] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[11:38:28] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:38:30] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[11:43:30] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:43:31] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[11:43:31] [ALERT] AKBNK LONG intragün -1.67% | Simdi:67.85 | P&L:+95 TL
+[11:48:31] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:48:32] [ALERT] GARAN LONG intragün -1.67% | Simdi:129.30 | P&L:+332 TL
+[11:53:32] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:53:34] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[11:53:34] [ALERT] AKBNK LONG intragün -1.67% | Simdi:67.85 | P&L:+95 TL
+[11:58:34] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[11:58:35] [ALERT] GARAN LONG intragün -2.13% | Simdi:128.70 | P&L:+261 TL
+[11:58:35] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[12:03:35] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:03:37] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[12:03:37] [ALERT] AKBNK LONG intragün -1.52% | Simdi:67.95 | P&L:+104 TL
+[12:08:37] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:08:38] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[12:13:38] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:13:40] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[12:18:40] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:18:42] [ALERT] GARAN LONG intragün -1.75% | Simdi:129.20 | P&L:+320 TL
+[12:23:42] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:23:43] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[12:28:43] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:28:45] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[12:33:45] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:33:47] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[12:33:47] [ALERT] AKBNK LONG intragün -1.52% | Simdi:67.95 | P&L:+104 TL
+[12:38:47] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:38:48] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[12:38:48] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[12:43:48] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:43:50] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[12:43:50] [ALERT] AKBNK LONG intragün -1.59% | Simdi:67.90 | P&L:+99 TL
+[12:48:50] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:48:51] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[12:48:51] [ALERT] AKBNK LONG intragün -1.67% | Simdi:67.85 | P&L:+95 TL
+[12:53:51] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:53:53] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[12:53:53] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[12:58:53] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[12:58:54] [ALERT] GARAN LONG intragün -1.90% | Simdi:129.00 | P&L:+296 TL
+[12:58:54] [ALERT] AKBNK LONG intragün -1.74% | Simdi:67.80 | P&L:+90 TL
+[13:03:54] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:03:56] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[13:03:56] [ALERT] AKBNK LONG intragün -1.88% | Simdi:67.70 | P&L:+80 TL
+[13:08:56] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:08:57] [ALERT] GARAN LONG intragün -2.05% | Simdi:128.80 | P&L:+273 TL
+[13:08:57] [ALERT] TUPRS SHORT intragün +1.68% | Simdi:257.50 | P&L:-553 TL
+[13:08:57] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[13:13:57] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:13:59] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[13:13:59] [ALERT] TUPRS SHORT intragün +1.58% | Simdi:257.25 | P&L:-545 TL
+[13:13:59] [ALERT] AKBNK LONG intragün -1.74% | Simdi:67.80 | P&L:+90 TL
+[13:18:59] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:19:01] [ALERT] GARAN LONG intragün -1.98% | Simdi:128.90 | P&L:+285 TL
+[13:19:01] [ALERT] TUPRS SHORT intragün +1.58% | Simdi:257.25 | P&L:-545 TL
+[13:19:01] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[13:24:01] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:24:02] [ALERT] GARAN LONG intragün -1.90% | Simdi:129.00 | P&L:+296 TL
+[13:24:02] [ALERT] TUPRS SHORT intragün +1.58% | Simdi:257.25 | P&L:-545 TL
+[13:24:02] [ALERT] AKBNK LONG intragün -1.74% | Simdi:67.80 | P&L:+90 TL
+[13:29:02] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:29:04] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[13:29:04] [ALERT] AKBNK LONG intragün -1.74% | Simdi:67.80 | P&L:+90 TL
+[13:34:04] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:34:05] [ALERT] GARAN LONG intragün -1.90% | Simdi:129.00 | P&L:+296 TL
+[13:34:05] [ALERT] AKBNK LONG intragün -1.81% | Simdi:67.75 | P&L:+85 TL
+[13:39:05] Fiyatlar guncelleniyor... (6 sembol, yfinance 15dk gecikmeli)
+[13:39:07] [ALERT] GARAN LONG intragün -1.83% | Simdi:129.10 | P&L:+308 TL
+[13:39:07] [ALERT] AKBNK LONG intragün -1.67% | Simdi:67.85 | P&L:+95 TL
+[13:39:45] Izleme kullanici tarafindan durduruldu.

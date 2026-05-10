@@ -1,0 +1,51 @@
+
+========================================================
+COST-AWARE BACKTEST RAPORU -- 2026-04-15
+========================================================
+Test donemi      : 2022-01-03 -> 2026-05-03
+Toplam islem     : 484
+
+[ BRUT  (maliyet yok) ]
+  Win rate        : 49.8%
+  Ort. getiri     : +12.261% / islem
+  Toplam PnL      : +346,185 TL
+  Sharpe          : 5.23
+  Profit factor   : 2.74
+
+[ NET   (gercekci BIST maliyetleri dahil) ]
+  Win rate        : 49.8%
+  Ort. getiri     : +11.821% / islem
+  Toplam PnL      : +336,571 TL
+  Sharpe          : 5.10
+  Profit factor   : 2.65
+
+[ MALIYET DETAYI ]
+  Giris slippage  : 0.10%  + likidite ek
+  Cikis slippage  : 0.10%   + likidite ek
+  Komisyon        : 0.050% her yon (min 2 TL)
+  Ort. toplam     : 0.440% / round-trip
+  Brut WR fark    : +0.0%  (gercek maliyet etkisi)
+  Brut->Net PnL   : +346,185 TL -> +336,571 TL
+
+[ STRATEJI KIRILIMI ]
+  S1 MTF Momentum      N=  57  Brut WR=5%  Net WR=5%  Net PnL=   -42,250 TL
+  S2 RSI MeanRev.      N= 355  Brut WR=63%  Net WR=63%  Net PnL=  +396,381 TL
+  S3 BB Breakout       N=  72  Brut WR=21%  Net WR=21%  Net PnL=   -17,559 TL
+
+[ CIKIS DAGILIMI ]
+  bb_expand           : 15
+  cross               : 10
+  rsi_mean            : 223
+  stop                : 35
+  stop_gap            : 201
+
+[ DEGERLENDIRME ]
+  Net WR >= 55%   : BASARISIZ  (gercek: 49.8%)
+  Net Sharpe >= 1 : GECERLI  (gercek: 5.10)
+  Net edge var mi : EVET  (ort. +11.821%/islem)
+
+  Sonuc: GOZDEN GECIR -- net edge yok veya yetersiz
+
+NOT: Brut WR ile Net WR arasindaki fark gercek maliyet etkisidir.
+     Bu fark ne kadar buyukse strateji o kadar maliyet hassasidir.
+========================================================

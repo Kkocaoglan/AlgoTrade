@@ -1,0 +1,104 @@
+================================================================
+BIST Paper Trade - Gunluk Rapor
+Tarih   : 2026-04-16
+Donem   : Son 30 gun
+================================================================
+
+1. EXECUTIVE SUMMARY
+----------------------------------------
+  Baslangic sermayesi :      100,000 TL
+  Toplam Equity       :      100,000 TL
+  Nakit               :      100,000 TL
+  Pozisyon degeri     :            0 TL
+  Toplam P&L          :        +0 TL  (+0.00%)
+  Gunluk P&L          :        +0 TL
+  Realize P&L         :    +1,592 TL
+  Unrealize P&L       :        +0 TL
+  Acik Pozisyon       : 0
+  Max Drawdown        : +0.00%
+  Sharpe (gunluk veri): 0.00
+
+2. EXPOSURE SUMMARY
+----------------------------------------
+  Gross exposure      :            0 TL  (0.0%)
+  Net exposure        :           +0 TL
+  Long exposure       :            0 TL
+  Short exposure      :            0 TL
+  Largest position    :         0.0%
+
+3. RISK SUMMARY
+----------------------------------------
+  Realize (window)    : +1,592 TL
+  (acik pozisyon yok)
+
+4. REGIME SUMMARY
+----------------------------------------
+  Market regime count : ASAGI 1, YATAY 8, YUKARI 12
+
+5. OPEN POSITIONS
+----------------------------------------
+  (acik pozisyon yok)
+
+6. STRATEJI BAZLI P&L (tum kapali tradeler)
+----------------------------------------
+  STRATEJI        TRADE  KAZANMA%   TOPLAM P&L   ORT P&L    EN IYI   EN KOTU
+  --------------------------------------------------------------------------
+  XGBoost AL          6       100%        +1,592 TL       +265       +505        +23
+
+7. SON 6 KAPANAN TRADE
+----------------------------------------
+  YKBNK    L XGBoost AL    2026-04-15 -> 2026-04-16     37.50 ->    37.90  P&L:       +87 TL  (+1.1%)  model_flip
+    Entry: {"reason": "ML BUY prob=0.692 conf=69.2% RSI=66.6 YATAY", "rsi": 66.6, "macd_hist": 0.718519, "prob": 0.6923, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 266.6667, "atr": 1.2443, "risk_tl": 149.33, "available_cash_before": 50510.76, "cash_reserve_pct": 50.5}
+    Exit : loop_trader model_flip @ 37.90
+  EKGYO    L XGBoost AL    2026-04-15 -> 2026-04-16     21.22 ->    21.74  P&L:      +225 TL  (+2.5%)  model_flip
+    Entry: {"reason": "ML BUY prob=0.692 conf=69.2% RSI=56.7 YATAY", "rsi": 56.74, "macd_hist": 0.31709, "prob": 0.6923, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 471.2535, "atr": 0.7129, "risk_tl": 150.8, "available_cash_before": 40510.76, "cash_reserve_pct": 40.5}
+    Exit : loop_trader model_flip @ 21.74
+  AKBNK    L XGBoost AL    2026-04-14 -> 2026-04-16     77.83 ->    79.95  P&L:      +505 TL  (+2.7%)  drawdown_kill
+    Entry: {"reason": "ML BUY prob=0.714 conf=71.4% RSI=71.3 YATAY", "rsi": 71.3, "macd_hist": 1.542997, "prob": 0.7143, "entry_time": "2026-04-14 15:57:01", "size_tl": 20000.0, "quantity": 256.9777}
+    Exit : DRAWDOWN_KILL 13.3%
+  MGROS    L XGBoost AL    2026-04-14 -> 2026-04-16    650.15 ->   661.00  P&L:      +293 TL  (+1.7%)  drawdown_kill
+    Entry: {"reason": "ML BUY prob=0.692 conf=69.2% RSI=64.9 YUKARI", "rsi": 64.9, "macd_hist": 6.652205, "prob": 0.6923, "entry_time": "2026-04-14 15:57:01", "size_tl": 19948.29, "quantity": 30.6826}
+    Exit : DRAWDOWN_KILL 13.3%
+  GARAN    L XGBoost AL    2026-04-15 -> 2026-04-16    139.40 ->   140.00  P&L:       +23 TL  (+0.4%)  drawdown_kill
+    Entry: {"reason": "ML BUY prob=0.714 conf=71.4% RSI=70.1 YATAY", "rsi": 70.12, "macd_hist": 2.467525, "prob": 0.7143, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 71.736, "atr": 4.2983, "risk_tl": 149.93, "available_cash_before": 60510.76, "cash_reserve_pct": 60.5}
+    Exit : DRAWDOWN_KILL 13.3%
+  GARAN    L XGBoost AL    2026-04-14 -> 2026-04-14    139.74 ->   143.23  P&L:      +459 TL  (+2.5%)  target_hit
+    Entry: {"reason": "ML BUY prob=0.714 conf=71.4% RSI=70.3 YATAY", "rsi": 70.29, "macd_hist": 2.467525, "prob": 0.7143, "entry_time": "2026-04-14 15:57:01", "size_tl": 19978.02, "quantity": 142.966}
+    Exit : TEST target_hit @ 143.23
+
+8. TRADE REASON LOG (son 12 olay)
+----------------------------------------
+  2026-04-16  EXIT         GARAN    ML_AL      DRAWDOWN_KILL 13.3%
+  2026-04-16  EXIT         MGROS    ML_AL      DRAWDOWN_KILL 13.3%
+  2026-04-16  EXIT         AKBNK    ML_AL      DRAWDOWN_KILL 13.3%
+  2026-04-16  EXIT         EKGYO    ML_AL      loop_trader model_flip @ 21.74
+  2026-04-16  EXIT         YKBNK    ML_AL      loop_trader model_flip @ 37.90
+  2026-04-15  ENTRY        EKGYO    ML_AL      {"reason": "ML BUY prob=0.692 conf=69.2% RSI=56.7 YATAY", "rsi": 56.74, "macd_hist": 0.31709, "prob": 0.6923, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 471.2535, "atr": 0.7129, "risk_tl": 150.8, "available_cash_before": 40510.76, "cash_reserve_pct": 40.5}
+  2026-04-15  ENTRY        YKBNK    ML_AL      {"reason": "ML BUY prob=0.692 conf=69.2% RSI=66.6 YATAY", "rsi": 66.6, "macd_hist": 0.718519, "prob": 0.6923, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 266.6667, "atr": 1.2443, "risk_tl": 149.33, "available_cash_before": 50510.76, "cash_reserve_pct": 50.5}
+  2026-04-15  ENTRY        GARAN    ML_AL      {"reason": "ML BUY prob=0.714 conf=71.4% RSI=70.1 YATAY", "rsi": 70.12, "macd_hist": 2.467525, "prob": 0.7143, "entry_time": "2026-04-15 12:28:52", "size_tl": 10000, "quantity": 71.736, "atr": 4.2983, "risk_tl": 149.93, "available_cash_before": 60510.76, "cash_reserve_pct": 60.5}
+  2026-04-14  EXIT         GARAN    ML_AL      TEST target_hit @ 143.23
+  2026-04-14  ENTRY        MGROS    ML_AL      {"reason": "ML BUY prob=0.692 conf=69.2% RSI=64.9 YUKARI", "rsi": 64.9, "macd_hist": 6.652205, "prob": 0.6923, "entry_time": "2026-04-14 15:57:01", "size_tl": 19948.29, "quantity": 30.6826}
+  2026-04-14  ENTRY        GARAN    ML_AL      {"reason": "ML BUY prob=0.714 conf=71.4% RSI=70.3 YATAY", "rsi": 70.29, "macd_hist": 2.467525, "prob": 0.7143, "entry_time": "2026-04-14 15:57:01", "size_tl": 19978.02, "quantity": 142.966}
+  2026-04-14  ENTRY        AKBNK    ML_AL      {"reason": "ML BUY prob=0.714 conf=71.4% RSI=71.3 YATAY", "rsi": 71.3, "macd_hist": 1.542997, "prob": 0.7143, "entry_time": "2026-04-14 15:57:01", "size_tl": 20000.0, "quantity": 256.9777}
+
+9. GUNLUK P&L GECMISI (son 14 gun)
+----------------------------------------
+  2026-04-14         +0 TL  Equity:    100,000 TL  |
+
+10. GENEL PERFORMANS (tum zamanlar)
+----------------------------------------
+  Toplam trade       : 6
+  Kazanma orani      : 100.0%
+  Toplam realize P&L : +1,592 TL
+  Sharpe (paper)     : 0.00
+  En iyi sembol      : AKBNK (+505 TL, 100% kazan)
+  En kotu sembol     : YKBNK (+87 TL, 100% kazan)
+
+11. MAKRO ANLIK TANIM
+----------------------------------------
+  USD/TRY  : 44.7511  (+0.04% gun degisimi)
+  Brent    : $98.16  (+3.40% gun degisimi)
+
+================================================================
+Rapor sonu.
+================================================================

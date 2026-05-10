@@ -1,0 +1,131 @@
+Veri yukleniyor...
+  29 hisse yuklendi, 34974 toplam ornek
+
+========================================================
+TEST 1: Lookahead Bias Testi
+========================================================
+[1A] Orijinal ozellikler ile WF ...
+[1B] Geciktirilmis ozellikler ile WF (tum features +1 bar)...
+[1C] Triple-barrier etiket tutarliligi kontrolu...
+
+========================================================
+TEST 2: Maliyet Sonrasi Performans
+========================================================
+
+========================================================
+TEST 3: Feature Sanity Check
+========================================================
+  Total features : 49
+  Top 20 features (XGBoost importance):
+  Rank  Feature                  Importance  Flag
+  ------------------------------------------------------------
+  1     trend_str_20                 14.93%  GREEN
+  2     price_pos_52w                 7.89%  GREEN
+  3     ret_20d                       7.32%  GREEN
+  4     atr_regime_high               5.71%  GREEN
+  5     bb_squeeze                    5.03%  GREEN
+  6     bb_pos                        4.79%  GREEN
+  7     gap                           3.77%  GREEN
+  8     atr_ratio                     3.67%  GREEN
+  9     dist_52w_high                 3.56%  GREEN
+  10    above_sma20                   3.29%  GREEN
+  11    above_upper                   2.82%  GREEN
+  12    price_ema200                  2.81%  GREEN
+  13    ret_1d                        2.59%  GREEN
+  14    tcell_ret_1d                  2.17%  GREEN
+  15    atr_pct                       1.99%  GREEN
+  16    above_ema200                  1.79%  GREEN
+  17    strongest_sector_5d           1.74%  GREEN
+  18    ret_3d                        1.54%  GREEN
+  19    ema_21_50                     1.29%  GREEN
+  20    trend_str_10                  1.25%  GREEN
+
+  Top feature    : trend_str_20 (14.93%)
+  Red flags      : NONE
+  Yellow flags   : NONE
+  NaN in feature matrix (before fillna): 0
+  Train period   : 2022-01-01 to 2023-07-01 (approx)
+  Test period    : 2024-01-01 to 2026-04-13 (strictly after train)
+
+========================================================
+TEST 4: Survivorship Bias Kontrolu
+========================================================
+  Symbol   First Date     Last Date        Rows  Flag
+  ----------------------------------------------------
+  AKBNK    2022-01-02     2026-04-27       1206  OK
+  ARCLK    2022-01-02     2026-04-27       1206  OK
+  ASELS    2022-01-02     2026-04-27       1206  OK
+  BIMAS    2022-01-02     2026-04-27       1206  OK
+  CIMSA    2022-01-02     2026-04-27       1206  OK
+  EKGYO    2022-01-02     2026-04-27       1206  OK
+  ENKAI    2022-01-02     2026-04-27       1206  OK
+  EREGL    2022-01-02     2026-04-27       1206  OK
+  FROTO    2022-01-02     2026-04-27       1206  OK
+  GARAN    2022-01-02     2026-04-27       1206  OK
+  GUBRF    2022-01-02     2026-04-27       1206  OK
+  ISCTR    2022-01-02     2026-04-27       1206  OK
+  KCHOL    2022-01-02     2026-04-27       1206  OK
+  KRDMD    2022-01-02     2026-04-27       1206  OK
+  LOGO     2022-01-02     2026-04-27       1206  OK
+  MGROS    2022-01-02     2026-04-27       1206  OK
+  NETAS    2022-01-02     2026-04-27       1206  OK
+  ODAS     2022-01-02     2026-04-27       1206  OK
+  PETKM    2022-01-02     2026-04-27       1206  OK
+  PGSUS    2022-01-02     2026-04-27       1206  OK
+  SAHOL    2022-01-02     2026-04-27       1206  OK
+  SISE     2022-01-02     2026-04-27       1206  OK
+  TAVHL    2022-01-02     2026-04-27       1206  OK
+  TCELL    2022-01-02     2026-04-27       1206  OK
+  THYAO    2022-01-02     2026-04-27       1206  OK
+  TOASO    2022-01-02     2026-04-27       1206  OK
+  TUPRS    2022-01-02     2026-04-27       1206  OK
+  VESTL    2022-01-02     2026-04-27       1206  OK
+  YKBNK    2022-01-02     2026-04-27       1206  OK
+
+  Min rows hisse : AKBNK (1206 rows, from 2022-01-02)
+  Flagged (<800) : NONE
+
+  Not: Tum 14 hisse Borsa Istanbul'da aktif olarak islem gormekte.
+  Delisted hisse bulunmuyor — universe secimi hayatta kalma biasini
+  minimize ediyor (bankalar, enerji, perakende: duruskan sektorler).
+
+
+
+========================================================
+MODEL DOGRULAMA RAPORU -- 2026-04-15
+========================================================
+
+TEST 1: Lookahead Bias
+  Original WF BUY Precision : 60.4%
+  Lagged WF BUY Precision   : 51.1%
+  Fark                      : 9.3 pp
+  Sonuc: TEMIZ: Lookahead bias yok
+  Triple-barrier check      : TEMIZ: Label sadece t+1..t+5 kapanislari kullaniyor
+  Checked rows              : 34452
+  Mismatches                : NONE
+
+TEST 2: Maliyet Sonrasi Performans
+  Gross BUY Precision       : 87.5%
+  Net BUY Precision         : 87.5%
+  Net Win Rate              : 87.5%
+  Beklenen net getiri/islem : 0.30%
+  Sonuc: GECERLI: Maliyetler sonrasi hala karli
+
+TEST 3: Feature Sanity
+  Top feature               : trend_str_20 (%14.93 importance)
+  Red flags                 : NONE
+  Yellow flags              : NONE
+  NaN in features (pre-fillna): 0
+  Sonuc: TEMIZ: Ozellik listesi guvenli
+
+TEST 4: Survivorship Bias
+  En az verisi olan hisse   : AKBNK (1206 rows)
+  Flagged (<800 rows)       : NONE
+  Sonuc: TEMIZ: Tum hisseler tam veri seti
+
+GENEL DEGERLENDIRME
+  Modeli kullanmaya devam et : EVET
+  Genel sonuc               : DEVAM ET
+  Oneri: 30 gercek islem sonrasi (2026-05-08) modeli yeniden degerlendir
+
+========================================================

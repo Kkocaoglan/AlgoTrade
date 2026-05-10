@@ -1,0 +1,53 @@
+# crypto_trades.txt — Gecmis islemler (backfill 2026-04-28)
+
+[ACILDI ] 2026-04-24 20:18 UTC | BTC    SHORT | Giris: $77,551.1600 | Boyut: 267 USDT | Stop: $79,489.9390 (-%2.5) | Hedef: $73,673.6020 (+%5.0)
+[ACILDI ] 2026-04-24 20:18 UTC | ETH    SHORT | Giris: $2,317.5300 | Boyut: 210 USDT | Stop: $2,375.4682 (-%2.5) | Hedef: $2,201.6535 (+%5.0)
+[KAPANDI] 2026-04-26 22:15 UTC | ETH    SHORT | Giris: $2,317.5300 -> Cikis: $2,378.3700 | ZARAR: -5.50 USDT (-2.6%) | Sure: 49s 56d | Neden: stop
+[ACILDI ] 2026-04-25 13:13 UTC | BNB    SHORT | Giris: $633.6900 | Boyut: 1200 USDT | Stop: $649.5322 (-%2.5) | Hedef: $602.0055 (+%5.0)
+[ACILDI ] 2026-04-25 13:13 UTC | AVAX   SHORT | Giris: $9.4000 | Boyut: 1200 USDT | Stop: $9.6350 (-%2.5) | Hedef: $8.9300 (+%5.0)
+[ACILDI ] 2026-04-25 14:10 UTC | FET    SHORT | Giris: $0.2085 | Boyut: 400 USDT | Stop: $0.2137 (-%2.5) | Hedef: $0.1981 (+%5.0)
+[ACILDI ] 2026-04-27 08:14 UTC | DOT    SHORT | Giris: $1.2330 | Boyut: 1200 USDT | Stop: $1.2638 (-%2.5) | Hedef: $1.1713 (+%5.0)
+[PARCA  ] 2026-04-29 21:37 UTC | BTC    SHORT | Giris: $77,551.1600 -> Cikis: $75,915.1600 | P&L: +2.81 USDT (+2.1%) | Kapanan: %50 | Sure: 121s 18d | Neden: kismi kar alma
+[PARCA  ] 2026-04-29 21:37 UTC | BNB    SHORT | Giris: $633.6900 -> Cikis: $617.2700 | P&L: +15.55 USDT (+2.6%) | Kapanan: %50 | Sure: 104s 23d | Neden: kismi kar alma
+[PARCA  ] 2026-04-29 21:37 UTC | AVAX   SHORT | Giris: $9.4000 -> Cikis: $9.1500 | P&L: +15.96 USDT (+2.7%) | Kapanan: %50 | Sure: 104s 23d | Neden: kismi kar alma
+[PARCA  ] 2026-04-30 04:37 UTC | DOT    SHORT | Giris: $1.2330 -> Cikis: $1.2050 | P&L: +13.63 USDT (+2.3%) | Kapanan: %50 | Sure: 68s 23d | Neden: kismi kar alma
+[ACILDI ] 2026-04-30 19:04 UTC | ONDO   SHORT | Giris: $0.2631 | Boyut: 400 USDT | Stop: $0.2710 (-%3.0) | Hedef: $0.2499 (+%5.0)
+[KAPANDI] 2026-05-01 15:37 UTC | ONDO   SHORT | Giris: $0.2631 -> Cikis: $0.2712 | ZARAR: -12.31 USDT (-3.1%) | Sure: 20s 33d | Neden: stop
+[ACILDI ] 2026-05-01 20:06 UTC | SOL    SHORT | Giris: $83.8000 | Boyut: 2000 USDT | Stop: $85.8950 (-%2.5) | Hedef: $81.2860 (+%3.0)
+[ACILDI ] 2026-05-03 19:43 UTC | ONDO   LONG  | Giris: $0.2937 | Boyut: 500 USDT | Stop: $0.2849 (-%3.0) | Hedef: $0.3084 (+%5.0)
+[KAPANDI] 2026-05-04 07:46 UTC | BTC    SHORT | Giris: $77,551.1600 -> Cikis: $79,845.9100 | ZARAR: -3.95 USDT (-3.0%) | Sure: 227s 27d | Neden: stop
+[PARCA  ] 2026-05-04 07:46 UTC | ONDO   LONG  | Giris: $0.2937 -> Cikis: $0.3076 | P&L: +11.83 USDT (+4.7%) | Kapanan: %50 | Sure: 12s 02d | Neden: kismi kar alma
+[KAPANDI] 2026-05-04 08:08 UTC | ONDO   LONG  | Giris: $0.2937 -> Cikis: $0.3085 | KAR: +12.60 USDT (+5.0%) | Sure: 12s 24d | Neden: hedef
+[KAPANDI] 2026-05-04 10:36 UTC | AVAX   SHORT | Giris: $9.4000 -> Cikis: $9.1700 | KAR: +14.68 USDT (+2.4%) | Sure: 213s 22d | Neden: trailing
+[ACILDI ] 2026-05-04 12:01 UTC | SUI    SHORT | Giris: $0.9260 | Boyut: 2000 USDT | Stop: $0.9492 (-%2.5) | Hedef: $0.8982 (+%3.0)
+[ACILDI ] 2026-05-04 12:11 UTC | AVAX   SHORT | Giris: $9.1400 | Boyut: 2000 USDT | Stop: $9.3685 (-%2.5) | Hedef: $8.8658 (+%3.0)
+[KAPANDI] 2026-05-04 19:25 UTC | DOT    SHORT | Giris: $1.2330 -> Cikis: $1.2330 | KAR: +0.00 USDT (+0.0%) | Sure: 179s 11d | Neden: mtf_flip_long
+[KAPANDI] 2026-05-04 19:25 UTC | SUI    SHORT | Giris: $0.9260 -> Cikis: $0.9372 | ZARAR: -24.19 USDT (-1.2%) | Sure: 7s 24d | Neden: mtf_flip_long
+[KAPANDI] 2026-05-04 19:25 UTC | AVAX   SHORT | Giris: $9.1400 -> Cikis: $9.2300 | ZARAR: -19.69 USDT (-1.0%) | Sure: 7s 13d | Neden: mtf_flip_long
+[ACILDI ] 2026-05-04 21:12 UTC | AVAX   SHORT | Giris: $9.1800 | Boyut: 2000 USDT | Stop: $9.4095 (-%2.5) | Hedef: $8.9046 (+%3.0)
+[KAPANDI] 2026-05-04 21:23 UTC | AVAX   SHORT | Giris: $9.1800 -> Cikis: $9.2100 | ZARAR: -6.54 USDT (-0.3%) | Sure: 11d | Neden: mtf_flip_long
+[KAPANDI] 2026-05-04 21:38 UTC | BNB    SHORT | Giris: $633.6900 -> Cikis: $624.9900 | KAR: +8.24 USDT (+1.4%) | Sure: 224s 24d | Neden: mtf_flip_long
+[KAPANDI] 2026-05-04 22:00 UTC | SOL    SHORT | Giris: $83.8000 -> Cikis: $84.5100 | ZARAR: -16.95 USDT (-0.8%) | Sure: 73s 53d | Neden: mtf_flip_long
+[ACILDI ] 2026-05-04 23:01 UTC | AVAX   SHORT | Giris: $9.1700 | Boyut: 2000 USDT | Stop: $9.3993 (-%2.5) | Hedef: $8.8949 (+%3.0)
+[KAPANDI] 2026-05-05 06:18 UTC | AVAX   SHORT | Giris: $9.1700 -> Cikis: $9.2800 | ZARAR: -23.99 USDT (-1.2%) | Sure: 7s 16d | Neden: mtf_flip_long
+[ACILDI ] 2026-05-05 12:35 UTC | SUI    LONG  | Giris: $0.9697 | Boyut: 2000 USDT | Stop: $0.9455 (-%2.5) | Hedef: $0.9988 (+%3.0)
+[ACILDI ] 2026-05-05 12:52 UTC | DOT    LONG  | Giris: $1.2770 | Boyut: 2000 USDT | Stop: $1.2451 (-%2.5) | Hedef: $1.3153 (+%3.0)
+[ACILDI ] 2026-05-05 19:34 UTC | FET    LONG  | Giris: $0.2171 | Boyut: 500 USDT | Stop: $0.2106 (-%3.0) | Hedef: $0.2280 (+%5.0)
+[PARCA  ] 2026-05-06 10:00 UTC | SUI    LONG  | Giris: $0.9697 -> Cikis: $1.0306 | P&L: +62.80 USDT (+6.3%) | Kapanan: %50 | Sure: 21s 24d | Neden: kismi kar alma
+[KAPANDI] 2026-05-06 10:00 UTC | SUI    LONG  | Giris: $0.9697 -> Cikis: $1.0306 | KAR: +62.80 USDT (+6.3%) | Sure: 21s 24d | Neden: daily_major_target
+[PARCA  ] 2026-05-06 10:00 UTC | DOT    LONG  | Giris: $1.2770 -> Cikis: $1.3300 | P&L: +41.50 USDT (+4.2%) | Kapanan: %50 | Sure: 21s 08d | Neden: kismi kar alma
+[KAPANDI] 2026-05-06 10:00 UTC | DOT    LONG  | Giris: $1.2770 -> Cikis: $1.3300 | KAR: +41.50 USDT (+4.2%) | Sure: 21s 08d | Neden: daily_major_target
+[PARCA  ] 2026-05-06 10:00 UTC | FET    LONG  | Giris: $0.2171 -> Cikis: $0.2245 | P&L: +8.52 USDT (+3.4%) | Kapanan: %50 | Sure: 14s 25d | Neden: kismi kar alma
+[KAPANDI] 2026-05-06 10:00 UTC | FET    LONG  | Giris: $0.2171 -> Cikis: $0.2245 | KAR: +8.52 USDT (+3.4%) | Sure: 14s 25d | Neden: daily_major_target
+[ACILDI ] 2026-05-10 16:14 UTC | SUI    LONG  | Giris: $1.2403 | Boyut: 2000 USDT | Stop: $1.2093 (-%2.5) | Hedef: $1.2775 (+%3.0)
+[PARCA  ] 2026-05-10 16:35 UTC | SUI    LONG  | Giris: $1.2403 -> Cikis: $1.2700 | P&L: +23.95 USDT (+2.4%) | Kapanan: %50 | Sure: 21d | Neden: kismi kar alma
+[ACILDI ] 2026-05-10 16:36 UTC | DOT    LONG  | Giris: $1.3870 | Boyut: 2000 USDT | Stop: $1.3523 (-%2.5) | Hedef: $1.4286 (+%3.0)
+[KAPANDI] 2026-05-10 17:00 UTC | SUI    LONG  | Giris: $1.2403 -> Cikis: $1.2860 | KAR: +36.85 USDT (+3.7%) | Sure: 45d | Neden: hedef
+[ACILDI ] 2026-05-10 17:19 UTC | SUI    LONG  | Giris: $1.3289 | Boyut: 2000 USDT | Stop: $1.2957 (-%2.5) | Hedef: $1.3688 (+%3.0)
+[ACILDI ] 2026-05-10 17:36 UTC | AVAX   LONG  | Giris: $10.3400 | Boyut: 2000 USDT | Stop: $10.0815 (-%2.5) | Hedef: $10.6502 (+%3.0)
+[ACILDI ] 2026-05-10 17:57 UTC | FET    LONG  | Giris: $0.2419 | Boyut: 500 USDT | Stop: $0.2346 (-%3.0) | Hedef: $0.2540 (+%5.0)
+[PARCA  ] 2026-05-10 18:40 UTC | SUI    LONG  | Giris: $1.3289 -> Cikis: $1.3584 | P&L: +22.20 USDT (+2.2%) | Kapanan: %50 | Sure: 1s 20d | Neden: kismi kar alma
+[KAPANDI] 2026-05-10 18:40 UTC | DOT    LONG  | Giris: $1.3870 -> Cikis: $1.4100 | KAR: +33.17 USDT (+1.7%) | Sure: 2s 03d | Neden: daily_major_target
+[KAPANDI] 2026-05-10 18:40 UTC | SUI    LONG  | Giris: $1.3289 -> Cikis: $1.3621 | KAR: +24.98 USDT (+2.5%) | Sure: 1s 20d | Neden: daily_major_target
+[KAPANDI] 2026-05-10 18:40 UTC | AVAX   LONG  | Giris: $10.3400 -> Cikis: $10.4000 | KAR: +11.61 USDT (+0.6%) | Sure: 1s 04d | Neden: daily_major_target
+[KAPANDI] 2026-05-10 18:40 UTC | FET    LONG  | Giris: $0.2419 -> Cikis: $0.2427 | KAR: +1.65 USDT (+0.3%) | Sure: 43d | Neden: daily_major_target

@@ -1,0 +1,85 @@
+================================================================
+BIST Paper Trade - Gunluk Rapor
+Tarih   : 2026-04-03
+Donem   : Son 7 gun
+================================================================
+
+1. EXECUTIVE SUMMARY
+----------------------------------------
+  Baslangic sermayesi :      100,000 TL
+  Toplam Equity       :       99,323 TL
+  Nakit               :       37,715 TL
+  Pozisyon degeri     :       61,609 TL
+  Toplam P&L          :      -677 TL  (-0.68%)
+  Gunluk P&L          :      -677 TL
+  Realize P&L         :        +0 TL
+  Unrealize P&L       :      +521 TL
+  Acik Pozisyon       : 6
+  Max Drawdown        : -0.68%
+  Sharpe (gunluk veri): 0.00
+
+2. EXPOSURE SUMMARY
+----------------------------------------
+  Gross exposure      :       62,285 TL  (62.3%)
+  Net exposure        :      +46,625 TL
+  Long exposure       :       54,455 TL
+  Short exposure      :        7,830 TL
+  Largest position    :        15.0%
+  Strategy exposure   : XGBoost AL 54.5%, XGBoost SAT 7.8%
+
+3. RISK SUMMARY
+----------------------------------------
+  Realize (window)    : +0 TL
+  Unrealize (open)    : +521 TL
+  Stop-near positions : 1
+  Ortalama stop riski : 7.77%
+  Maks stop riski     : 9.44%
+
+4. REGIME SUMMARY
+----------------------------------------
+  Market regime count : ASAGI 1, YATAY 7, YUKARI 4
+  Regime alignment    : 0/6 open positions aligned
+
+5. OPEN POSITIONS
+----------------------------------------
+  GARAN    LONG   ML_AL         Giris:  126.50  Simdiki:  128.80  Unreal:    +273 TL (+1.8%)
+    Boyut:    15,000 TL  Stop:117.07  Hedef:132.16  Guven:66%  Regime:N/A
+  EREGL    LONG   ML_AL         Giris:   27.90  Simdiki:   28.78  Unreal:    +402 TL (+3.2%)
+    Boyut:    12,750 TL  Stop:25.99  Hedef:29.05  Guven:65%  Regime:N/A
+  ARCLK    LONG   ML_AL         Giris:  110.50  Simdiki:  110.20  Unreal:     -29 TL (-0.3%)
+    Boyut:    10,838 TL  Stop:103.00  Hedef:115.00  Guven:64%  Regime:N/A
+  SAHOL    LONG   ML_AL         Giris:   89.10  Simdiki:   90.55  Unreal:    +150 TL (+1.6%)
+    Boyut:     9,212 TL  Stop:82.68  Hedef:92.95  Guven:63%  Regime:N/A
+  TUPRS    SHORT  ML_SAT        Giris:  240.50  Simdiki:  253.75  Unreal:    -409 TL (-5.2%)
+    Boyut:     7,830 TL  Stop:263.21  Hedef:226.87  Guven:63%  Regime:N/A
+  AKBNK    LONG   ML_AL         Giris:   66.90  Simdiki:   68.25  Unreal:    +134 TL (+2.0%)
+    Boyut:     6,656 TL  Stop:60.95  Hedef:70.47  Guven:61%  Regime:N/A
+
+6. STRATEJI BAZLI P&L (tum kapali tradeler)
+----------------------------------------
+  (henuz kapanan trade yok)
+
+7. SON 0 KAPANAN TRADE
+----------------------------------------
+  (yok)
+
+8. TRADE REASON LOG (son 0 olay)
+----------------------------------------
+  (event log yok)
+
+9. GUNLUK P&L GECMISI (son 14 gun)
+----------------------------------------
+  2026-03-31         +0 TL  Equity:    100,000 TL  |
+  2026-04-01       -677 TL  Equity:     99,323 TL  |
+
+10. GENEL PERFORMANS (tum zamanlar)
+----------------------------------------
+  (henuz kapanan trade yok)
+
+11. MAKRO ANLIK TANIM
+----------------------------------------
+  (yfinance yuklu degil veya veri alinamadi)
+
+================================================================
+Rapor sonu.
+================================================================

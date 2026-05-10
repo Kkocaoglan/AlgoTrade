@@ -1,0 +1,51 @@
+================================================================
+BIST Paper Trade — Günlük Rapor
+Tarih   : 2026-03-31
+Dönem   : Son 30 gün
+================================================================
+
+1. PORTFÖY ÖZETİ
+----------------------------------------
+  Baslangic sermayesi :      100,000 TL
+  Nakit               :       37,715 TL
+  Pozisyon degeri     :       62,285 TL
+  Toplam Equity       :      100,000 TL
+  Toplam P&L          :        +0 TL  (+0.00%)
+  Günlük P&L          :        +0 TL
+  Acik Pozisyon       : 6
+  Max Drawdown        : +0.00%
+  Sharpe (günlük veri): 0.00
+
+2. ACIK POZISYONLAR
+----------------------------------------
+  GARAN    LONG   ML_AL         Giris:   126.50  Simdiki:   125.50  Gerceklesm.: -0.8%  Stop:   117.07  Güven: 66%
+  EREGL    LONG   ML_AL         Giris:    27.90  Simdiki:    27.58  Gerceklesm.: -1.1%  Stop:    25.99  Güven: 65%
+  ARCLK    LONG   ML_AL         Giris:   110.50  Simdiki:   108.00  Gerceklesm.: -2.3%  Stop:   103.00  Güven: 64%
+  SAHOL    LONG   ML_AL         Giris:    89.10  Simdiki:    88.90  Gerceklesm.: -0.2%  Stop:    82.68  Güven: 63%
+  TUPRS    SHORT  ML_SAT        Giris:   240.50  Simdiki:   247.00  Gerceklesm.: -2.7%  Stop:   263.21  Güven: 63%
+  AKBNK    LONG   ML_AL         Giris:    66.90  Simdiki:    65.60  Gerceklesm.: -1.9%  Stop:    60.95  Güven: 61%
+
+3. STRATEJİ BAZLI P&L (tüm kapali tradeler)
+----------------------------------------
+  (henüz kapanan trade yok)
+
+4. SON 0 KAPANAN TRADE
+----------------------------------------
+  (yok)
+
+5. GÜNLÜK P&L GEÇMİŞİ (son 14 gün)
+----------------------------------------
+  2026-03-31         +0 TL  Equity:    100,000 TL  |
+6. GENEL PERFORMANS (tum zamanlar)
+----------------------------------------
+  (henuz kapanan trade yok)
+
+7. MAKRO ANLIKTANIM
+----------------------------------------
+  USD/TRY  : 44.4765  (+0.07% gun degisimi)
+  Brent    : $106.91  (-5.20% gun degisimi)
+  [*] Brent -5.2% -- TUPRS SHORT icin olumlu (petrol dusuyor)
+
+================================================================
+Rapor sonu.
+================================================================

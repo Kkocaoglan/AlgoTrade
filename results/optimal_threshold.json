@@ -1,0 +1,21 @@
+{
+  "buy_threshold": 0.73,
+  "precision_at_threshold": 0.6377,
+  "n_trades": 875,
+  "epnl_per_trade": 0.00482,
+  "total_epnl": 4.2175,
+  "computed_at": "2026-04-27T22:33:38",
+  "avg_win_pct": 2.0,
+  "avg_loss_pct": 1.5,
+  "cost_bps": 25.0,
+  "min_trades": 10,
+  "fold_thresholds": [
+    0.62,
+    0.55,
+    0.5,
+    0.88,
+    0.51,
+    0.8
+  ],
+  "fold_threshold_std": 0.1461
+}

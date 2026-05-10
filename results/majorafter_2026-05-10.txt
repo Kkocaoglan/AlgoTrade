@@ -1,0 +1,23 @@
+MAJORAFTER REPORT 2026-05-10
+============================================================
+Start equity      : 10227.97 USDT
+Daily target      : 10381.39 USDT (+1.5%)
+Locked            : YES
+Locked at         : 2026-05-10T18:40:37.608948+00:00
+Lock reason       : daily_major_target_hit
+Locked equity     : 10382.37 USDT
+Actual major gain : +154.40 USDT (+1.51%)
+
+Post-lock shadow book (capital frozen at locked equity):
+Closed trades     : 0
+Open trades       : 3
+Shadow total P&L  : +0.00 USDT (+0.00%)
+Hypothetical equity: 10382.37 USDT
+
+Closed shadow trades:
+- none
+
+Open shadow trades:
+- AVAX/USDT LONG | entry=10.4000 size=2076.47 USDT | stop=10.1400 target=10.7120
+- SUI/USDT LONG | entry=1.3702 size=2076.47 USDT | stop=1.3359 target=1.4113
+- DOT/USDT LONG | entry=1.4100 size=2076.47 USDT | stop=1.3747 target=1.4523

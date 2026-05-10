@@ -1,0 +1,361 @@
+{
+  "generated_at": "2026-04-26T11:10:35.536199+00:00",
+  "trained_at": "2026-04-26T11:10:19.100557+00:00",
+  "report_path": "/Users/kayahankocaoglan/Desktop/CS/Ttrade/Trade/models/threshold_report.json",
+  "grid": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8
+  ],
+  "selection_policy": {
+    "min_trade_count": {
+      "MAJOR": 12,
+      "RISKY": 6
+    },
+    "min_net_expectancy_after_costs": 0.0,
+    "selection_rule": "eligible_by_min_trades_and_expectancy_then_max_precision",
+    "direction_scope": "long_confidence_proxy"
+  },
+  "cost_comparison": {
+    "selected_thresholds": [
+      {
+        "tier": "MAJOR",
+        "selected_threshold": 0.75,
+        "fallback_threshold": 0.75,
+        "gross_avg_return": 0.005542069281499746,
+        "net_avg_return": 0.002142069281499746,
+        "gross_expectancy": 0.005542069281499746,
+        "net_expectancy": 0.0021420692814997427,
+        "cost_drag": 0.0034000000000000002,
+        "costs_disabled_threshold_reference": 0.75
+      },
+      {
+        "tier": "RISKY",
+        "selected_threshold": null,
+        "fallback_threshold": 0.8,
+        "gross_avg_return": 0.0011003818978208941,
+        "net_avg_return": -0.0022996181021791066,
+        "gross_expectancy": 0.001100381897820895,
+        "net_expectancy": -0.0022996181021791087,
+        "cost_drag": 0.0034000000000000007,
+        "costs_disabled_threshold_reference": 0.8
+      }
+    ]
+  },
+  "tiers": {
+    "MAJOR": {
+      "enabled": true,
+      "selection_status": "eligible",
+      "selected_threshold": 0.75,
+      "fallback_threshold": 0.75,
+      "no_trade_zone": {
+        "short_below_or_equal": 0.25,
+        "long_above_or_equal": 0.75
+      },
+      "selected_metrics": {
+        "threshold": 0.75,
+        "trade_count": 175,
+        "precision": 0.48,
+        "gross_avg_return": 0.005542069281499746,
+        "net_avg_return": 0.002142069281499746,
+        "max_drawdown_approx": -0.40208289081758986,
+        "gross_expectancy": 0.005542069281499746,
+        "net_expectancy": 0.0021420692814997427,
+        "cost_drag": 0.0034000000000000002,
+        "meets_min_trade_count": true,
+        "meets_net_expectancy": true,
+        "eligible": true
+      },
+      "costs_disabled_reference": {
+        "threshold": 0.75,
+        "trade_count": 175,
+        "precision": 0.48,
+        "gross_avg_return": 0.005542069281499746,
+        "net_avg_return": 0.002142069281499746,
+        "max_drawdown_approx": -0.40208289081758986,
+        "gross_expectancy": 0.005542069281499746,
+        "net_expectancy": 0.0021420692814997427,
+        "cost_drag": 0.0034000000000000002,
+        "meets_min_trade_count": true,
+        "meets_net_expectancy": true,
+        "eligible": true
+      },
+      "candidates": [
+        {
+          "threshold": 0.5,
+          "trade_count": 794,
+          "precision": 0.4521410579345088,
+          "gross_avg_return": 0.00477809383988764,
+          "net_avg_return": 0.00137809383988764,
+          "max_drawdown_approx": -0.9064489929044741,
+          "gross_expectancy": 0.004778093839887641,
+          "net_expectancy": 0.0013780938398876372,
+          "cost_drag": 0.0034000000000000002,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.55,
+          "trade_count": 636,
+          "precision": 0.44654088050314467,
+          "gross_avg_return": 0.004790799137985716,
+          "net_avg_return": 0.001390799137985715,
+          "max_drawdown_approx": -0.8639285516896399,
+          "gross_expectancy": 0.004790799137985718,
+          "net_expectancy": 0.0013907991379857147,
+          "cost_drag": 0.003400000000000001,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.6,
+          "trade_count": 500,
+          "precision": 0.44,
+          "gross_avg_return": 0.005056137838923212,
+          "net_avg_return": 0.0016561378389232113,
+          "max_drawdown_approx": -0.8099223803837391,
+          "gross_expectancy": 0.005056137838923212,
+          "net_expectancy": 0.0016561378389232054,
+          "cost_drag": 0.0034000000000000002,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.65,
+          "trade_count": 375,
+          "precision": 0.43466666666666665,
+          "gross_avg_return": 0.005103580854252498,
+          "net_avg_return": 0.0017035808542524968,
+          "max_drawdown_approx": -0.6876801255633493,
+          "gross_expectancy": 0.005103580854252499,
+          "net_expectancy": 0.0017035808542524948,
+          "cost_drag": 0.003400000000000001,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.7,
+          "trade_count": 274,
+          "precision": 0.45985401459854014,
+          "gross_avg_return": 0.006183672275661658,
+          "net_avg_return": 0.002783672275661657,
+          "max_drawdown_approx": -0.5175469221076685,
+          "gross_expectancy": 0.0061836722756616605,
+          "net_expectancy": 0.002783672275661656,
+          "cost_drag": 0.0034000000000000007,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.75,
+          "trade_count": 175,
+          "precision": 0.48,
+          "gross_avg_return": 0.005542069281499746,
+          "net_avg_return": 0.002142069281499746,
+          "max_drawdown_approx": -0.40208289081758986,
+          "gross_expectancy": 0.005542069281499746,
+          "net_expectancy": 0.0021420692814997427,
+          "cost_drag": 0.0034000000000000002,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        },
+        {
+          "threshold": 0.8,
+          "trade_count": 100,
+          "precision": 0.46,
+          "gross_avg_return": 0.0035504903076038863,
+          "net_avg_return": 0.00015049030760388605,
+          "max_drawdown_approx": -0.23792464576204508,
+          "gross_expectancy": 0.0035504903076038876,
+          "net_expectancy": 0.00015049030760389166,
+          "cost_drag": 0.0034000000000000002,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": true,
+          "eligible": true
+        }
+      ]
+    },
+    "RISKY": {
+      "enabled": false,
+      "selection_status": "fallback_insufficient_edge",
+      "selected_threshold": null,
+      "fallback_threshold": 0.8,
+      "no_trade_zone": {
+        "short_below_or_equal": 0.2,
+        "long_above_or_equal": 0.8
+      },
+      "selected_metrics": {
+        "threshold": 0.8,
+        "trade_count": 170,
+        "precision": 0.6176470588235294,
+        "gross_avg_return": 0.0011003818978208941,
+        "net_avg_return": -0.0022996181021791066,
+        "max_drawdown_approx": -0.5600945896498859,
+        "gross_expectancy": 0.001100381897820895,
+        "net_expectancy": -0.0022996181021791087,
+        "cost_drag": 0.0034000000000000007,
+        "meets_min_trade_count": true,
+        "meets_net_expectancy": false,
+        "eligible": false
+      },
+      "costs_disabled_reference": {
+        "threshold": 0.8,
+        "trade_count": 170,
+        "precision": 0.6176470588235294,
+        "gross_avg_return": 0.0011003818978208941,
+        "net_avg_return": -0.0022996181021791066,
+        "max_drawdown_approx": -0.5600945896498859,
+        "gross_expectancy": 0.001100381897820895,
+        "net_expectancy": -0.0022996181021791087,
+        "cost_drag": 0.0034000000000000007,
+        "meets_min_trade_count": true,
+        "meets_net_expectancy": false,
+        "eligible": false
+      },
+      "candidates": [
+        {
+          "threshold": 0.5,
+          "trade_count": 657,
+          "precision": 0.558599695585997,
+          "gross_avg_return": 0.0004056113456144471,
+          "net_avg_return": -0.002994388654385553,
+          "max_drawdown_approx": -0.9380907162445501,
+          "gross_expectancy": 0.00040561134561444695,
+          "net_expectancy": -0.002994388654385555,
+          "cost_drag": 0.0034,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.55,
+          "trade_count": 553,
+          "precision": 0.5641952983725136,
+          "gross_avg_return": 0.00045888446453218573,
+          "net_avg_return": -0.002941115535467815,
+          "max_drawdown_approx": -0.8946714269681991,
+          "gross_expectancy": 0.00045888446453218497,
+          "net_expectancy": -0.0029411155354678187,
+          "cost_drag": 0.0034000000000000007,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.6,
+          "trade_count": 451,
+          "precision": 0.5764966740576497,
+          "gross_avg_return": 0.000389599736874989,
+          "net_avg_return": -0.0030104002631250117,
+          "max_drawdown_approx": -0.8400218339288199,
+          "gross_expectancy": 0.000389599736874989,
+          "net_expectancy": -0.003010400263125013,
+          "cost_drag": 0.0034000000000000007,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.65,
+          "trade_count": 375,
+          "precision": 0.592,
+          "gross_avg_return": 0.0008236593730612458,
+          "net_avg_return": -0.002576340626938754,
+          "max_drawdown_approx": -0.7550909753611855,
+          "gross_expectancy": 0.0008236593730612442,
+          "net_expectancy": -0.0025763406269387577,
+          "cost_drag": 0.0033999999999999994,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.7,
+          "trade_count": 298,
+          "precision": 0.5838926174496645,
+          "gross_avg_return": 0.0008755601207330921,
+          "net_avg_return": -0.002524439879266908,
+          "max_drawdown_approx": -0.749303044584748,
+          "gross_expectancy": 0.0008755601207330911,
+          "net_expectancy": -0.002524439879266909,
+          "cost_drag": 0.0034,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.75,
+          "trade_count": 231,
+          "precision": 0.6103896103896104,
+          "gross_avg_return": 0.0010332641983409393,
+          "net_avg_return": -0.0023667358016590616,
+          "max_drawdown_approx": -0.658662923549417,
+          "gross_expectancy": 0.00103326419834094,
+          "net_expectancy": -0.002366735801659062,
+          "cost_drag": 0.003400000000000001,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        },
+        {
+          "threshold": 0.8,
+          "trade_count": 170,
+          "precision": 0.6176470588235294,
+          "gross_avg_return": 0.0011003818978208941,
+          "net_avg_return": -0.0022996181021791066,
+          "max_drawdown_approx": -0.5600945896498859,
+          "gross_expectancy": 0.001100381897820895,
+          "net_expectancy": -0.0022996181021791087,
+          "cost_drag": 0.0034000000000000007,
+          "meets_min_trade_count": true,
+          "meets_net_expectancy": false,
+          "eligible": false
+        }
+      ]
+    }
+  },
+  "production_decision": {
+    "accepted": false,
+    "checks": {
+      "precision": false,
+      "trade_count": true,
+      "net_expectancy": true
+    },
+    "failed_checks": [
+      "precision"
+    ],
+    "thresholds": {
+      "min_precision": 0.55,
+      "min_trade_count": 12,
+      "min_net_expectancy_after_costs": 0.0
+    }
+  },
+  "model_report_path": "/Users/kayahankocaoglan/Desktop/CS/Ttrade/Trade/models/crypto_model_report.json",
+  "execution_cost_config": {
+    "name": "binance_spot_default",
+    "enabled": true,
+    "order_type": "market",
+    "order_modes": {
+      "market": {
+        "fee_bps": 10.0,
+        "spread_bps": 2.0,
+        "slippage_bps": 5.0
+      },
+      "limit": {
+        "fee_bps": 10.0,
+        "spread_bps": 0.5,
+        "slippage_bps": 1.5
+      }
+    }
+  }
+}

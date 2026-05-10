@@ -1,0 +1,207 @@
+BIST ML Ensemble Analysis  —  2026-05-09
+Model: XGBoost + LightGBM + CatBoost  |  BUY_THRESHOLD=0.65
+Loading models ...
+OK
+Building feature matrix via ml_train.make_features ...
+OK (35217 rows, 29 symbols)
+
+=================================================================
+  TASK 1 — FEATURE IMPORTANCE DEEP DIVE
+=================================================================
+
+── Top 15 features (mean importance across all 3 models) ──
+#   Feature                      XGB%    LGB%    CAT%   Mean%  RankDelta
+------------------------------------------------------------------------
+1   trend_str_20               14.93    3.96    8.30    9.06          7
+2   atr_ratio                   3.67    7.47   11.47    7.54          7
+3   tcell_ret_1d                2.17    9.51    8.77    6.82         13
+4   ret_20d                     7.32    4.58    8.47    6.79          2
+5   price_pos_52w               7.89    2.48    7.21    5.86         13
+6   strongest_sector_5d         1.74    8.54    5.76    5.35         15
+7   bb_pos                      4.79    4.58    5.69    5.02          3
+8   dist_52w_high               3.56    4.26    5.66    4.49          2
+9   gap                         3.77    3.91    4.76    4.14          4
+10  atr_pct                     1.99    5.48    4.86    4.11         11
+11  ret_1d                      2.59    2.52    6.64    3.91          8
+12  atr_regime_high             5.71    0.81    4.07    3.53         27
+13  bb_squeeze                  5.03    0.69    1.82    2.52         28
+14  price_ema200                2.81    2.22    1.74    2.26          6
+15  ema_21_50                   1.29    3.19    1.29    1.92          8
+
+── Consensus top features (all 3 models agree, rank ≤15) ──
+  trend_str_20                 XGB= 1 LGB= 8 CAT= 4
+  atr_ratio                    XGB= 8 LGB= 3 CAT= 1
+  tcell_ret_1d                 XGB=14 LGB= 1 CAT= 2
+  ret_20d                      XGB= 3 LGB= 5 CAT= 3
+  price_pos_52w                XGB= 2 LGB=15 CAT= 5
+  bb_pos                       XGB= 6 LGB= 5 CAT= 8
+  dist_52w_high                XGB= 9 LGB= 7 CAT= 9
+  gap                          XGB= 7 LGB= 9 CAT=11
+  atr_pct                      XGB=15 LGB= 4 CAT=10
+  ret_1d                       XGB=13 LGB=14 CAT= 6
+
+── Near-zero importance (mean% < 0.20) — removal candidates ──
+  below_lower                  mean=0.000%  XGB=0.000% LGB=0.000% CAT=0.000%
+  rsi_above50                  mean=0.000%  XGB=0.000% LGB=0.000% CAT=0.000%
+  sentiment_score              mean=0.000%  XGB=0.000% LGB=0.000% CAT=0.000%
+  news_count                   mean=0.000%  XGB=0.000% LGB=0.000% CAT=0.000%
+  mtf_trend                    mean=0.175%  XGB=0.473% LGB=0.023% CAT=0.030%
+
+── Model agreement (rank correlation) ──
+  Spearman rank corr XGB↔LGB : 0.583
+  Spearman rank corr XGB↔CAT : 0.873
+  Spearman rank corr LGB↔CAT : 0.835
+
+── Highly correlated feature pairs (>0.85) from training data ──
+  sentiment_score           ↔ news_count                 corr=1.000
+
+=================================================================
+  TASK 2 — THRESHOLD CALIBRATION ANALYSIS
+=================================================================
+
+Dataset: 6989 WF predictions | Base rate: 0.230
+
+ Threshold  Signals  Signals%  Precision   Recall      F1   Lift
+-----------------------------------------------------------------
+      0.50     1022     14.6%      0.675    0.430   0.525   2.94x
+      0.55      948     13.6%      0.690    0.407   0.512   3.00x
+      0.60      883     12.6%      0.701    0.386   0.498   3.05x
+      0.65      788     11.3%      0.716    0.351   0.471   3.12x ← current
+      0.70      696     10.0%      0.746    0.323   0.451   3.25x
+      0.75      599      8.6%      0.801    0.299   0.436   3.49x
+      0.80      477      6.8%      0.860    0.255   0.394   3.74x
+
+  Optimal by F1 : threshold=0.50  (F1=0.525, Precision=0.675, Signals/day=14.6%)
+  Prec ≥ 0.75  : threshold=0.75  (599 signals, 8.6%)
+
+  Current thr 0.65: precision=0.716  recall=0.351  F1=0.471  signals=788 (11.3%)
+  Recommendation: raise threshold to 0.50 (+0.054 F1, --3.3% fewer signals)
+
+=================================================================
+  TASK 3 — LABEL SENSITIVITY ANALYSIS
+=================================================================
+Building future-return lookup from ohlcv ...
+OK (1216 dates)
+
+Config                     Base rate  Prec@0.65  Prec@0.70  Prec@0.75  Signals@0.65
+--------------------------------------------------------------------------------
+Current: +2.0% / 3d            0.574      0.858      0.875      0.898           788
+Alt A:   +1.5% / 3d            0.612      0.878      0.894      0.910           788
+Alt B:   +2.5% / 3d            0.541      0.834      0.851      0.880           788
+Alt C:   +2.0% / 5d            0.678      0.933      0.945      0.967           788
+
+  Note: Using EXISTING model predictions (prob_buy) relabelled under each config.
+  This measures label sensitivity WITHOUT retraining — shows how precision
+  changes if the target definition shifts, holding model weights constant.
+  Full retrain would require ~6-fold walk-forward per config (~30 min each).
+
+=================================================================
+  TASK 4 — REGIME-SPECIFIC PRECISION ANALYSIS
+=================================================================
+Computing vol regime for each date ...
+OK (1214 dates)
+
+Regime         N rows  Base rate  Prec@0.65  Prec@0.70  Signals  Rec@0.65
+----------------------------------------------------------------------
+NORMAL            174      0.121      0.094      0.043       32     0.143
+HIGH_VOL          580      0.210      0.490      0.556      100     0.402
+EXTREME          6235      0.234      0.780      0.799      656     0.350
+
+  Regime date distribution:
+    NORMAL         174 rows (2.5%)
+    HIGH_VOL       580 rows (8.3%)
+    EXTREME       6235 rows (89.2%)
+
+  Regime-specific threshold recommendations:
+    NORMAL       → CAUTION: prec65=0.094 < 0.70, raise to 0.75+
+    HIGH_VOL     → CAUTION: prec65=0.490 < 0.70, raise to 0.75+
+    EXTREME      → consider raising to 0.70 (prec65=0.780)
+
+=================================================================
+  TASK 5 — ERROR ANALYSIS (FALSE POSITIVES / FALSE NEGATIVES)
+=================================================================
+
+At threshold=0.65:
+  True Positives (TP) :   564
+  False Positives (FP):   224  ← model said BUY, stock didn't move +2%
+  False Negatives (FN):  1041  ← stock moved +2%, model didn't signal
+  True Negatives (TN) :  5160
+
+  FP prob distribution: mean=0.765 min=0.651 max=0.917 pct>0.65=76.5%
+  FN prob distribution: mean=0.257 min=0.000 max=0.647 (all < 0.65)
+
+  False Positive breakdown by prob bucket:
+  Bucket           FP count  TP count  Precision
+  0.65-0.70              47         45       0.489
+  0.70-0.75              58         39       0.402
+  0.75-0.80              52         70       0.574
+  0.80-0.85              34         92       0.730
+  0.85-1.01              33        318       0.906
+
+  FP rate by symbol (top 10 worst):
+  Symbol      Signals     TP     FP  Precision
+  PGSUS            45     25     20      0.556
+  ARCLK            36     21     15      0.583
+  EKGYO            41     24     17      0.585
+  CIMSA            34     21     13      0.618
+  YKBNK            37     23     14      0.622
+  THYAO            37     23     14      0.622
+  GUBRF            37     23     14      0.622
+  ISCTR            38     24     14      0.632
+  PETKM            20     13      7      0.650
+  GARAN            30     20     10      0.667
+
+  Best precision symbols (top 5):
+  ASELS      prec=0.963  n_signals=27
+  TAVHL      prec=0.889  n_signals=18
+  ENKAI      prec=0.875  n_signals=24
+  FROTO      prec=0.857  n_signals=14
+  MGROS      prec=0.857  n_signals=21
+
+── Feature values on False Positives vs True Positives ──
+  Feature                     FP mean   TP mean     Diff
+  -------------------------------------------------------
+  ret_20d                     -0.1520   -0.2203  +0.0684
+  trend_str_20                -0.4320   -0.4084  -0.0236
+  above_upper                  0.0045    0.0106  -0.0062
+  price_ema200                -0.0526   -0.0868  +0.0343
+  bb_pos                       0.2833    0.2579  +0.0255
+  atr_ratio                    0.8401    0.6498  +0.1903
+  rsi                          0.4301    0.3896  +0.0405
+  vol_ratio                    0.7627    0.8499  -0.0872
+  mtf_trend                   -0.2277   -0.1099  -0.1177
+  ret_5d                      -0.0403   -0.0636  +0.0233
+
+  False Negatives: which symbols and when were good trades missed?
+  FN by symbol (top 10):
+    SISE         49 missed  avg_prob=0.244
+    KRDMD        48 missed  avg_prob=0.248
+    PETKM        47 missed  avg_prob=0.279
+    ODAS         46 missed  avg_prob=0.292
+    FROTO        44 missed  avg_prob=0.237
+    ENKAI        43 missed  avg_prob=0.228
+    EREGL        41 missed  avg_prob=0.277
+    ARCLK        40 missed  avg_prob=0.258
+    MGROS        39 missed  avg_prob=0.235
+    TOASO        39 missed  avg_prob=0.272
+
+  FN prob distribution (all < 0.65):
+    (0.0, 0.3]             585 (56.2%)
+    (0.3, 0.4]             107 (10.3%)
+    (0.4, 0.5]             223 (21.4%)
+    (0.5, 0.55]             36 (3.5%)
+    (0.55, 0.6]             35 (3.4%)
+    (0.6, 0.65]             55 (5.3%)
+
+  Key insight: FNs with prob in [0.55, 0.65) are 'near-miss' signals.
+  Near-miss FNs (prob 0.55-0.65): 90 (8.6% of all FNs)
+  Lowering threshold to 0.60 would capture these at cost of lower precision.
+
+=================================================================
+  SUMMARY
+=================================================================
+  WF dataset: 6989 rows | 29 symbols | 6 folds | base rate=0.230
+  @ threshold 0.65: precision=0.716  recall=0.351  signals=788 (11.3%)
+  See results/model_analysis_plots.png for visual analysis
+
+Plots saved → results/model_analysis_plots.png

@@ -1,0 +1,9 @@
+.env
+*.db
+*.pkl
+*.csv
+*.png
+logs/
+__pycache__/
+*.pyc
+models/backup/

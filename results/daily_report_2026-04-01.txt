@@ -1,0 +1,52 @@
+================================================================
+BIST Paper Trade — Günlük Rapor
+Tarih   : 2026-04-01
+Dönem   : Son 30 gün
+================================================================
+
+1. PORTFÖY ÖZETİ
+----------------------------------------
+  Baslangic sermayesi :      100,000 TL
+  Nakit               :       37,715 TL
+  Pozisyon degeri     :       61,609 TL
+  Toplam Equity       :       99,323 TL
+  Toplam P&L          :      -677 TL  (-0.68%)
+  Günlük P&L          :      -677 TL
+  Acik Pozisyon       : 6
+  Max Drawdown        : -0.68%
+  Sharpe (günlük veri): 0.00
+
+2. ACIK POZISYONLAR
+----------------------------------------
+  GARAN    LONG   ML_AL         Giris:   126.50  Simdiki:   128.80  Gerceklesm.: +1.8%  Stop:   117.07  Güven: 66%
+  EREGL    LONG   ML_AL         Giris:    27.90  Simdiki:    28.78  Gerceklesm.: +3.2%  Stop:    25.99  Güven: 65%
+  ARCLK    LONG   ML_AL         Giris:   110.50  Simdiki:   110.20  Gerceklesm.: -0.3%  Stop:   103.00  Güven: 64%
+  SAHOL    LONG   ML_AL         Giris:    89.10  Simdiki:    90.55  Gerceklesm.: +1.6%  Stop:    82.68  Güven: 63%
+  TUPRS    SHORT  ML_SAT        Giris:   240.50  Simdiki:   253.75  Gerceklesm.: -5.5%  Stop:   263.21  Güven: 63%
+  AKBNK    LONG   ML_AL         Giris:    66.90  Simdiki:    68.25  Gerceklesm.: +2.0%  Stop:    60.95  Güven: 61%
+
+3. STRATEJİ BAZLI P&L (tüm kapali tradeler)
+----------------------------------------
+  (henüz kapanan trade yok)
+
+4. SON 0 KAPANAN TRADE
+----------------------------------------
+  (yok)
+
+5. GÜNLÜK P&L GEÇMİŞİ (son 14 gün)
+----------------------------------------
+  2026-03-31         +0 TL  Equity:    100,000 TL  |
+  2026-04-01       -677 TL  Equity:     99,323 TL  |
+6. GENEL PERFORMANS (tum zamanlar)
+----------------------------------------
+  (henuz kapanan trade yok)
+
+7. MAKRO ANLIKTANIM
+----------------------------------------
+  USD/TRY  : 44.4864  (+0.03% gun degisimi)
+  Brent    : $101.77  (-14.01% gun degisimi)
+  [*] Brent -14.0% -- TUPRS SHORT icin olumlu (petrol dusuyor)
+
+================================================================
+Rapor sonu.
+================================================================

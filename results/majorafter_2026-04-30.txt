@@ -1,0 +1,15 @@
+MAJORAFTER REPORT 2026-04-30
+============================================================
+Start equity      : 10109.82 USDT
+Daily target      : 10413.11 USDT (+3.0%)
+Locked            : NO
+Locked equity     : N/A
+Actual major gain : N/A
+
+Post-lock shadow book: waiting for daily lock
+
+Closed shadow trades:
+- none
+
+Open shadow trades:
+- none

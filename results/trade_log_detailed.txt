@@ -1,0 +1,19 @@
+[2026-04-20 14:41] SATIS | AKBNK | Giris: 83.55 @ 10:30 | Cikis: 82.25 @ 14:41 | Sebep: Stop-Loss | P&L: -105 TL (-1.56%) | Tutulma: 4s 11dk | Model prob giris: 0.86 | Model prob cikis: 0.63
+[2026-04-20 14:41] SATIS | FROTO | Giris: 109.30 @ 10:36 | Cikis: 107.40 @ 14:41 | Sebep: Stop-Loss | P&L: -116 TL (-1.74%) | Tutulma: 4s 5dk | Model prob giris: 0.86 | Model prob cikis: 0.63
+[2026-04-20 14:41] SATIS | MGROS | Giris: 673.00 @ 10:36 | Cikis: 658.50 @ 14:41 | Sebep: Stop-Loss | P&L: -141 TL (-2.15%) | Tutulma: 4s 5dk | Model prob giris: 0.69 | Model prob cikis: 0.63
+[2026-04-20 15:02] SATIS | AKBNK | Giris: 83.55 @ 15:01 | Cikis: 82.25 @ 15:02 | Sebep: Stop-Loss | P&L: -105 TL (-1.56%) | Tutulma: 1dk | Model prob giris: 0.86 | Model prob cikis: 0.63
+[2026-04-20 15:02] SATIS | FROTO | Giris: 109.30 @ 15:01 | Cikis: 107.60 @ 15:02 | Sebep: Stop-Loss | P&L: -105 TL (-1.56%) | Tutulma: 1dk | Model prob giris: 0.86 | Model prob cikis: 0.63
+[2026-04-20 15:02] SATIS | MGROS | Giris: 673.00 @ 15:01 | Cikis: 659.50 @ 15:02 | Sebep: Stop-Loss | P&L: -132 TL (-2.01%) | Tutulma: 1dk | Model prob giris: 0.69 | Model prob cikis: 0.59
+[2026-04-28 10:27] SATIS | PETKM | Giris: 23.40 @ 10:48 | Cikis: 24.16 @ 10:27 | Sebep: Stop-Loss | P&L: -103 TL (-3.25%) | Tutulma: 95s 38dk | Model prob giris: 0.70 | Model prob cikis: 0.00
+[2026-04-28 11:48] SATIS | ODAS | Giris: 7.01 @ 10:45 | Cikis: 7.14 @ 11:48 | Sebep: Stop-Loss | P&L: -62 TL (-1.85%) | Tutulma: 1s 2dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-04-29 17:12] SATIS | VESTL | Giris: 28.20 @ 10:30 | Cikis: 27.68 @ 17:12 | Sebep: Stop-Loss | P&L: -123 TL (-1.84%) | Tutulma: 126s 42dk | Model prob giris: 0.93 | Model prob cikis: 0.00
+[2026-04-29 17:12] SATIS | CIMSA | Giris: 56.55 @ 11:33 | Cikis: 57.55 @ 17:12 | Sebep: Stop-Loss | P&L: -59 TL (-1.77%) | Tutulma: 53s 39dk | Model prob giris: 0.70 | Model prob cikis: 0.00
+[2026-04-29 17:12] SATIS | PETKM | Giris: 24.20 @ 10:30 | Cikis: 24.64 @ 17:12 | Sebep: Stop-Loss | P&L: -61 TL (-1.82%) | Tutulma: 30s 42dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-04 10:55] SATIS | AKBNK | Giris: 78.10 @ 10:30 | Cikis: 71.85 @ 10:55 | Sebep: Hedef | P&L: +234 TL (+8.00%) | Tutulma: 144s 24dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-04 10:55] SATIS | ASELS | Giris: 418.75 @ 12:01 | Cikis: 434.50 @ 10:55 | Sebep: Stop-Loss | P&L: -119 TL (-3.76%) | Tutulma: 142s 53dk | Model prob giris: 0.91 | Model prob cikis: 0.00
+[2026-05-04 10:55] SATIS | EREGL | Giris: 33.84 @ 17:24 | Cikis: 35.08 @ 10:55 | Sebep: Stop-Loss | P&L: -116 TL (-3.66%) | Tutulma: 113s 31dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-04 10:55] SATIS | KRDMD | Giris: 37.36 @ 17:24 | Cikis: 38.02 @ 10:55 | Sebep: Stop-Loss | P&L: -59 TL (-1.77%) | Tutulma: 113s 31dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-04 15:13] SATIS | PETKM | Giris: 24.68 @ 17:24 | Cikis: 24.18 @ 15:13 | Sebep: Trailing Stop | P&L: +55 TL (+2.03%) | Tutulma: 117s 50dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-05 13:46] SATIS | GUBRF | Giris: 542.50 @ 10:30 | Cikis: 552.00 @ 13:46 | Sebep: Stop-Loss | P&L: -59 TL (-1.75%) | Tutulma: 171s 16dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-05 17:28] SATIS | ENKAI | Giris: 104.90 @ 10:30 | Cikis: 106.50 @ 17:28 | Sebep: Stop-Loss | P&L: -52 TL (-1.53%) | Tutulma: 174s 57dk | Model prob giris: 0.92 | Model prob cikis: 0.00
+[2026-05-06 13:06] SATIS | TOASO | Giris: 294.75 @ 10:30 | Cikis: 306.75 @ 13:06 | Sebep: Stop-Loss | P&L: -128 TL (-4.07%) | Tutulma: 194s 36dk | Model prob giris: 0.92 | Model prob cikis: 0.00

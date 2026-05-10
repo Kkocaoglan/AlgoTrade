@@ -1,0 +1,21 @@
+# ── Core data / ML ────────────────────────────────────────────────────────────
+pandas>=2.0,<4
+numpy>=1.26,<3
+scikit-learn>=1.4,<2
+xgboost>=2.0,<4
+lightgbm>=4.0,<5
+catboost>=1.2,<2
+joblib>=1.4,<2
+matplotlib>=3.8,<4
+
+# ── Market data ───────────────────────────────────────────────────────────────
+yfinance>=0.2,<2
+isyatirimhisse
+
+# ── Crypto exchange / websocket ───────────────────────────────────────────────
+ccxt>=4.5,<5
+websocket-client>=1.8,<2
+
+# ── HTTP / config ─────────────────────────────────────────────────────────────
+requests>=2.30,<3
+python-dotenv>=1.0,<2

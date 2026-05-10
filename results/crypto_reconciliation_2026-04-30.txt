@@ -1,0 +1,24 @@
+
+=== 20:49:47 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 20:51:00 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 20:51:18 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 20:57:37 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 20:58:19 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
+
+=== 21:17:55 UTC ===
+[MEDIUM] SIZE_MISMATCH: DOT/USDT pos_id=6 size fark: position=600.00 vs order=1200.00 (diff=600.00 USDT)
+  Aksiyon: Hangi degerin dogru oldugunu dogrula
