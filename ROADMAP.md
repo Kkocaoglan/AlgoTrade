@@ -1,5 +1,49 @@
 # ROADMAP.md
 
+## BIST Model/Data/Metrics/Logging Roadmap
+
+### Objective
+Make BIST results measurable on the same assumptions used by the live loop
+before trying new models or more aggressive thresholds.
+
+### P0: Data Quality And Corporate Actions
+- Detect split/bedelsiz-like price basis breaks between latest DB close and
+  live/entry price.
+- Block new entries for affected symbols until data and indicators are on a
+  consistent price basis.
+- Add a short corporate-action audit command to review recent large close jumps.
+
+### P1: Label And Execution Alignment
+- Use open/high/low-aware triple-barrier labels when OHLC exists.
+- Resolve gap opens before intraday barrier checks.
+- Treat same-bar stop+target ambiguity conservatively as stop-loss.
+- Keep close-only fallback only for old/minimal datasets.
+
+### P1: Tradable Threshold Selection
+- Treat `bist_live_wf_sim.py` as the primary threshold reality check.
+- Prefer expectancy, profit factor, drawdown, trade count, and average win/loss
+  over raw model precision.
+- Use `optimize_threshold.py` only as a model-quality helper until it consumes
+  simulated trade outcomes.
+
+### P1: Logging And Auditability
+- Log data-quality blocks in `signals_log.reason_blocked`.
+- Add richer entry context over time: effective threshold, data source,
+  DB close, live price, volatility regime, HMM regime, and order id.
+- Separate "model threshold passed" from "trade was actually executable".
+
+### P2: Reporting
+- Extend daily reporting with live-loop metrics:
+  expectancy, profit factor, max drawdown, gate blockers, and calibration buckets.
+- Report model quality separately from execution quality.
+
+### Implementation Order
+1. Corporate-action/data-quality entry guard.
+2. OHLC/gap-aware triple-barrier labels.
+3. Live-rule simulator metrics for threshold decisions.
+4. Richer signal/order logging.
+5. Threshold optimizer backed by simulated trade outcomes.
+
 ## Phase 1: Repository Integrity
 
 ### Objective

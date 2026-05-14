@@ -18,13 +18,17 @@ from datetime import datetime, timedelta
 import pandas as pd
 import numpy as np
 
+from bist_config import (
+    CORR_THRESHOLD,
+    CORR_WINDOW_DAYS,
+    MAX_PORTFOLIO_HEAT,
+    TOTAL_CAPITAL,
+)
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-TOTAL_CAPITAL    = 100_000          # TL
-MAX_PORTFOLIO_HEAT = 0.06           # 6% max total risk at any one time
-CORR_THRESHOLD   = 0.85             # correlation above this = same group (0.85 for BIST: macro effects make all stocks highly correlated)
-CORR_WINDOW_DAYS = 60               # days of price history for correlation
+# Imported from bist_config.py so risk gates share loop_trader.py active defaults.
 
 
 class PortfolioRisk:

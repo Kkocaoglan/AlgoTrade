@@ -19,9 +19,16 @@ def compute_triple_barrier_label_details(
     pt_sl_ratio=2.0,
     sl_ratio=1.0,
     vertical_bars=5,
+    use_intrabar=True,
 ):
     """
     Return per-row triple-barrier outcomes and resolution bars.
+
+    When open/high/low columns are present, labels use gap-aware daily OHLC:
+    open gaps are resolved first, high/low barrier hits are checked intrabar,
+    and same-bar target+stop ambiguity resolves conservatively as stop-loss.
+    If OHLC columns are unavailable, the function falls back to close-only
+    behavior for backward compatibility.
 
     Output columns:
       - label: {1: upper barrier, -1: lower barrier, 0: vertical barrier}
@@ -32,6 +39,21 @@ def compute_triple_barrier_label_details(
 
     df = symbol_df.sort_index().copy()
     closes = pd.to_numeric(df["close"], errors="coerce").to_numpy(dtype=float)
+    opens = (
+        pd.to_numeric(df["open"], errors="coerce").to_numpy(dtype=float)
+        if use_intrabar and "open" in df.columns
+        else closes
+    )
+    highs = (
+        pd.to_numeric(df["high"], errors="coerce").to_numpy(dtype=float)
+        if use_intrabar and "high" in df.columns
+        else closes
+    )
+    lows = (
+        pd.to_numeric(df["low"], errors="coerce").to_numpy(dtype=float)
+        if use_intrabar and "low" in df.columns
+        else closes
+    )
     atrs = pd.to_numeric(df[atr_col], errors="coerce").to_numpy(dtype=float)
     dates = df.index
 
@@ -51,14 +73,33 @@ def compute_triple_barrier_label_details(
         label = 0
         resolved = vertical_bars
         for j in range(1, vertical_bars + 1):
-            price = closes[i + j]
-            if not np.isfinite(price):
+            open_p = opens[i + j]
+            high_p = highs[i + j]
+            low_p = lows[i + j]
+            close_p = closes[i + j]
+            if not np.isfinite(close_p):
                 continue
-            if price >= pt:
+
+            # Gap-aware first touch. If both intraday barriers are possible in
+            # the same daily bar, resolve conservatively as stop-loss because
+            # OHLC data cannot prove the target was reached first.
+            if np.isfinite(open_p) and open_p <= sl:
+                label = -1
+                resolved = j
+                break
+            if np.isfinite(open_p) and open_p >= pt:
                 label = 1
                 resolved = j
                 break
-            if price <= sl:
+            if np.isfinite(high_p) and np.isfinite(low_p) and high_p >= pt and low_p <= sl:
+                label = -1
+                resolved = j
+                break
+            if np.isfinite(high_p) and high_p >= pt:
+                label = 1
+                resolved = j
+                break
+            if np.isfinite(low_p) and low_p <= sl:
                 label = -1
                 resolved = j
                 break
@@ -80,6 +121,7 @@ def compute_triple_barrier_labels(
     pt_sl_ratio=2.0,
     sl_ratio=1.0,
     vertical_bars=5,
+    use_intrabar=True,
 ):
     """
     symbol_df: DataFrame with columns [date, close, atr14] indexed by date
@@ -94,6 +136,7 @@ def compute_triple_barrier_labels(
         pt_sl_ratio=pt_sl_ratio,
         sl_ratio=sl_ratio,
         vertical_bars=vertical_bars,
+        use_intrabar=use_intrabar,
     )
     return details["label"]
 
@@ -124,7 +167,7 @@ def _load_symbol_frame(symbol):
     try:
         df = pd.read_sql(
             """
-            SELECT o.date, o.close, i.atr14
+            SELECT o.date, o.open, o.high, o.low, o.close, i.atr14
             FROM ohlcv o
             JOIN indicators i ON o.symbol = i.symbol AND o.date = i.date
             WHERE o.symbol = ?
@@ -138,7 +181,8 @@ def _load_symbol_frame(symbol):
 
     df["date"] = pd.to_datetime(df["date"])
     df = df.set_index("date")
-    df["close"] = pd.to_numeric(df["close"], errors="coerce")
+    for col in ["open", "high", "low", "close"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
     df["atr14"] = pd.to_numeric(df["atr14"], errors="coerce")
     return df
 

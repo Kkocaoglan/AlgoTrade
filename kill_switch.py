@@ -27,6 +27,15 @@ try:
 except Exception:
     HAS_LOG = False
 
+from bist_config import (
+    DAILY_LOSS_LIMIT,
+    DRAWDOWN_HALT_PCT,
+    DRAWDOWN_KILL_PCT,
+    FAT_FINGER_PCT,
+    MAX_ORDERS_PER_MIN,
+    MAX_POSITION_SIZE,
+)
+
 # -- Paths -------------------------------------------------------------------
 BASE_DIR  = Path(__file__).parent
 DB_PATH   = BASE_DIR / "trade_data.db"
@@ -35,12 +44,7 @@ LOG_FILE  = str(BASE_DIR / "logs" / "kill_switch.log")
 TRADE_LOG = str(BASE_DIR / "results" / "trade_log.csv")
 
 # -- Constants ---------------------------------------------------------------
-DAILY_LOSS_LIMIT   = -2_000   # TL — stop trading if daily P&L drops below this
-MAX_POSITION_SIZE  = 10_000   # TL — hard cap per trade (mirrors loop_trader)
-FAT_FINGER_PCT     = 0.05     # 5% deviation from last known price -> reject
-MAX_ORDERS_PER_MIN = 5        # max orders in a 60-second window
-DRAWDOWN_HALT_PCT  = 0.08     # 8% drawdown -> halt new orders
-DRAWDOWN_KILL_PCT  = 0.12     # 12% drawdown -> auto-create KILL_SWITCH.txt
+# Imported from bist_config.py so kill-switch gates share loop_trader.py active defaults.
 
 
 # =============================================================================

@@ -26,10 +26,12 @@ fetch_data.py           Fetches OHLCV from isyatirimhisse (primary) + yfinance (
 indicators.py           Computes EMA8/21/50/200, RSI14, MACD, ATR14, BB, OBV, MTF into DB
 backtest.py             Rule-based strategies: S1=MTF Momentum, S2=RSI MeanRev, S3=BB Breakout
 cost_aware_backtest.py  Gross vs net P&L with realistic BIST slippage + commission
+bist_live_wf_sim.py     Read-only replay of signals_log with loop_trader-style sizing/exits
 ml_train.py             Trains XGBoost+LightGBM+CatBoost ensemble; saves to models/
 validate_model.py       4-test model validation (lookahead, net precision, features, bias)
 paper_trade.py          Paper engine (--run/--status/--watch); max 6 positions
 loop_trader.py          MAIN: 60s loop, live signals, OMS, circuit breaker, reconciliation
+bist_config.py          Shared BIST runtime risk/config source for loop_trader, kill_switch, portfolio_risk
 algolab_stream.py       Algolab REST API + yfinance MOCK fallback; global: stream
 kill_switch.py          Pre-BUY safety gate (6 checks); reads/writes KILL_SWITCH.txt
 oms.py                  Order lifecycle: NEW→SENT→FILLED/REJECTED/CANCELLED; global: oms
@@ -39,7 +41,7 @@ daily_report.py         Daily P&L report + results/pnl_chart.png
 daily_journal.py        EOD journal at 18:30 → performance_tracker.csv
 news_filter.py          News scraper: KAP (Google RSS fallback), Investing.com, TCMB
 sentiment.py            BERTurk+keyword hybrid; SentimentAnalyzer; score_news(); lazy BERT
-portfolio_risk.py       Portfolio heat cap (6%) + correlation gate (0.70); global: _portfolio_risk
+portfolio_risk.py       Portfolio heat cap (6%) + correlation gate (0.85); global: _portfolio_risk
 volatility_regime.py    Realized vol regime filter NORMAL/HIGH_VOL/EXTREME; global: _vol_regime
 telegram_bot.py         Telegram alerts (TELEGRAM_TOKEN + TELEGRAM_CHAT_ID from .env)
 ```
@@ -167,13 +169,13 @@ Thresholds: BUY_THRESHOLD=0.65 | SHORT_THRESHOLD=0.65 | MODEL_FLIP_THRESHOLD=0.5
 | 4     | news_filter.py    | score ≤ -1 entry / ≤ -2 exit | Skip entry / force close  |
 | 5     | loop_trader.py    | RSI > 72 at entry    | Skip BUY                        |
 | 6     | loop_trader.py    | same symbol < 2h     | Dedup cooldown                  |
-| 7     | portfolio_risk.py | heat > 6% or corr ≥ 0.70 | Block BUY                  |
+| 7     | portfolio_risk.py | heat > 6% or corr ≥ 0.85 | Block BUY                  |
 | 8     | volatility_regime.py | EXTREME (vol ≥ 4%) | Skip scan_and_trade             |
 
 ## Portfolio Heat (portfolio_risk.py)
-- `MAX_PORTFOLIO_HEAT = 0.06` (6%) | `CORR_THRESHOLD = 0.70` | `CORR_WINDOW_DAYS = 60`
+- `MAX_PORTFOLIO_HEAT = 0.06` (6%) | `CORR_THRESHOLD = 0.85` | `CORR_WINDOW_DAYS = 60`
 - Heat formula: `risk_tl = (entry - stop) / entry × size_tl` per position; `total_heat = Σrisk_tl / 100000`
-- Correlation: pct_change returns over 60 days; block if |corr| ≥ 0.70 to any open position
+- Correlation: pct_change returns over 60 days; block if |corr| ≥ 0.85 to any open position
 - CLI: `python3.12 portfolio_risk.py --report` | `--check GARAN 1000`
 
 ## Volatility Regime (volatility_regime.py)
@@ -388,20 +390,21 @@ CRYPTO_SYMBOLS = CRYPTO_MAJOR + CRYPTO_RISKY                    # 10 total
 **Config:**
 ```
 CRYPTO_CAPITAL_USDT        = 10000 USDT (paper)
-CRYPTO_MAX_POSITIONS       = 5          # major max 4, risky max 1
-MAJOR_MAX_SIZE_PCT         = 0.15       # 15% of capital per major position (1500 USDT)
-RISKY_MAX_SIZE_PCT         = 0.05       # 5% of capital per risky position (500 USDT)
+CRYPTO_MAX_POSITIONS       = 6          # major max 5, risky max 1
+MAJOR_MAX_SIZE_PCT         = 0.20       # 20% of capital per major position (2000 USDT)
+RISKY_MAX_SIZE_PCT         = 0.10       # 10% of capital per risky position (1000 USDT)
 CRYPTO_ML_THRESHOLD        = 0.63       # XGBoost BUY prob threshold (MAJOR)
 RISKY_ML_THRESHOLD         = 0.72       # higher ML bar for RISKY tier
 CRYPTO_MTF_THRESHOLD_ML    = 4          # MTF adj ≥ 4 when ML active (MAJOR)
 CRYPTO_MTF_THRESHOLD_RB    = 4          # MTF adj ≥ 4 rule-based only (MAJOR)
 RISKY_MTF_THRESHOLD        = 5          # MTF adj ≥ 5 required for RISKY tier
-CRYPTO_STOP_PCT            = 0.025      # 2.5%
-CRYPTO_TARGET_PCT          = 0.05       # 5%
+COIN_GROUP_POLICIES        = CORE_MAJOR stop 2.2% target 2.4%;
+                             VOL_MAJOR stop 2.5% target 3.0%;
+                             RISKY stop 3.0% target 5.0%
 CRYPTO_DAILY_LOSS_LIMIT    = 0.05       # 5% of capital → halt
 CRYPTO_BTC_CRASH_THRESHOLD = -0.03      # BTC 1h drop < -3% → block all entries
 CRYPTO_CORR_THRESHOLD      = 0.85       # BTC-altcoin correlation gate
-CRYPTO_RISK_PCT            = 0.01       # 1% capital risk per trade (ATR sizing)
+CRYPTO_RISK_PCT            = 0.03       # 3% capital risk per trade (ATR sizing)
 SIGNAL_INTERVAL            = 300        # 5 min between signal scans
 EXIT_INTERVAL              = 15         # 15 sec between exit checks
 HEALTH_INTERVAL            = 60         # 60 sec between health prints
@@ -410,8 +413,8 @@ HEALTH_INTERVAL            = 60         # 60 sec between health prints
 **Tier system (2026-04-27):**
 | Tier  | Symbols            | LONG ML thr | SHORT ML thr | MTF thr (ML) | MTF thr (RB) | Max size |
 |-------|--------------------|-------------|--------------|--------------|--------------|----------|
-| MAJOR | BTC/ETH/BNB/SOL/AVAX/SUI/DOT | 0.70 (fold-median) | 0.65 (fold-median) | 4 | 4 | 1500 USDT (15%) |
-| RISKY | ONDO/FET           | 0.70        | 0.75         | 5            | 5            | 500 USDT (5%)   |
+| MAJOR | BTC/ETH/BNB/SOL/AVAX/SUI/DOT | 0.70 (fold-median) | 0.65 (fold-median) | 4 | 4 | 2000 USDT (20%) |
+| RISKY | ONDO/FET           | 0.70        | 0.75         | 5            | 5            | 1000 USDT (10%) |
 - Thresholds are fold-median calibrated from trained artifact; NEUTRAL regime adds +5% to threshold
 - major_open ≥ 4 → block new MAJOR entries
 - risky_open ≥ 1 → block new RISKY entries
@@ -426,6 +429,7 @@ HEALTH_INTERVAL            = 60         # 60 sec between health prints
 crypto_stream.py          ccxt.binance REST wrapper + CryptoWebSocket class (10-coin stream)
                           WS: wss://stream.binance.com:9443; auto-reconnect ×5
                           check_symbol_on_exchange(symbol) → bool (Binance spot availability)
+crypto_config.py          Shared crypto runtime/status config source; mirrors active crypto_trader defaults
 crypto_indicators.py      In-memory indicators: EMA/RSI/MACD/BB/ATR/vol_ratio
                           + compute_mtf(stream, symbol) → (long_score, short_score)
                             1h:  price>EMA21 (+2 trend)
@@ -433,10 +437,11 @@ crypto_indicators.py      In-memory indicators: EMA/RSI/MACD/BB/ATR/vol_ratio
                             5m:  RSI<42 (+1), MACD bull_cross (+1)  [max 6 total]
 crypto_oms.py             Paper OMS: crypto_positions + crypto_orders; CryptoOMS class
 crypto_trader.py          Main v3: 3-thread daemon; WS-first price; MTF+ML+F&G+BTC gate
-                          Tier gates: major_open<4, risky_open<1; per-tier thresholds+sizing
+                          Tier gates: major_open<5, risky_open<1; per-tier thresholds+sizing
 crypto_logger.py          4-file rotating logger (50MB×20 each):
                           crypto_trade.log | crypto_scan.log | crypto_system.log | crypto_exit.log
 crypto_journal.py         Daily P&L summary + Telegram at 00:00 UTC
+crypto_gate_risk_analysis.py Read-only gate blocker + risk_pct scaling analysis from crypto_signal_journal
 crypto_ml.py              Directional XGBoost trainer (LONG + SHORT) for crypto module
                           Active features: 20 single-coin OHLCV-computable features (reverted from 28; expansion hurt WF)
                           Training window: 180 days via paginated Binance history (1h + aligned 5m)
@@ -482,7 +487,8 @@ crypto_orders    (order_id, symbol, side, amount_usdt, amount_coin, price,
 | 75-100 Extreme Greed| harder (+1 MTF) | easier (-1 MTF) | ×0.7 |
 
 **Position sizing (ATR-based):**
-`size = min(capital×0.01 / (ATR×1.5/price), capital/max_pos×0.8)` × F&G modifier
+`size = min(capital×0.03 / (ATR×1.5/price), per-coin cap)` × F&G modifier
+Per-coin cap: CORE/VOL_MAJOR 20% of capital, RISKY 5% of capital; tier cap MAJOR 80%, RISKY 10%.
 
 **Exit logic:**
 1. Stop loss: LONG cur ≤ entry×0.975 | SHORT cur ≥ entry×1.025
@@ -520,7 +526,7 @@ volatility_regime, weekly_retrain, viop_*.
 - Feature expansion risk: going 20→28 features hurt LONG WF (51.6%→46.3%). Any FEATURE_NAMES changes must be tested with a dry-run retrain before committing.
 
 ## On Compact
-Preserve: 29-stock universe (KOZAL delisted), SHORT capability (SHORT_THRESHOLD=0.65, MAX_SHORT_SIZE=5k, RSI>60, _pos_lwm trailing), model metrics (WF 77.1%, traded-only 75.0%, test 62.5%), macro features (USDTRY+Brent+TCMB+strongest_sector_5d added 2026-04-24), 0 open BIST positions (tüm Nisan pozisyonları stop-loss ile kapandı), ticker corrections (MGROS/ENKAI/EKGYO), eval window (2026-04-08→2026-06-08, 58%/1.2/30), equity_tracker peak=100k, P2 risk module constants (6%/0.70/2.5%/4.0%), BERTurk hybrid (keywords primary, BERT fills at 0, clamped [-2,+2], lazy Mac load), P3 status all done, paper_positions status lowercase, OMS SHORT/COVER directions both go through kill switch. Crypto module v3: 10 files (stream/indicators/oms/trader/journal/ml/sentiment/status/weekly_retrain/logger), 2 DB tables, ccxt Binance testnet REST + production WS, 10000 USDT paper, 10 coins (9 active, HYPE unlisted), 3-thread daemon (signal 5m/exit 15s/health 60s), 5m/15m/1h MTF, 20 features (reverted from 28; expansion hurt WF), dominance_ratio=2.0, pure outcome labels (no RSI/EMA entry filters — leakage fixed). LONG model active WF=52.4% (thr MAJOR=0.70, RISKY=0.70), SHORT model active WF=51.2% (thr MAJOR=0.65, RISKY=0.75), both fold-median calibrated. Acceptance gates: LONG folds_gte_3_of_5 + mean>52%; SHORT folds_gte_3_of_5 + mean>50%. PAPER_LONG_ONLY=False, SHORT_MODEL_ACTIVE=True. 5 open SHORT positions (BTC/BNB/AVAX/FET/DOT), 1 closed ETH short -5.50 USDT. logs/crypto_scan_state.json for status timing. Weekly retrain: REJECTED→models/rejected/; backup→models/backup/. Config: .env (BINANCE_API_KEY/SECRET/PAPER_MODE), .env.example şablon. Feature expansion risk: 20→28 features hurt LONG WF — always dry-run test before adding to FEATURE_NAMES.
+Preserve: 29-stock universe (KOZAL delisted), SHORT capability (SHORT_THRESHOLD=0.65, MAX_SHORT_SIZE=5k, RSI>60, _pos_lwm trailing), model metrics (WF 77.1%, traded-only 75.0%, test 62.5%), macro features (USDTRY+Brent+TCMB+strongest_sector_5d added 2026-04-24), 0 open BIST positions (tüm Nisan pozisyonları stop-loss ile kapandı), ticker corrections (MGROS/ENKAI/EKGYO), eval window (2026-04-08→2026-06-08, 58%/1.2/30), equity_tracker peak=100k, P2 risk module constants now centralized in bist_config.py (heat 6%, corr 0.85, vol 2.5%/4.0%), BERTurk hybrid (keywords primary, BERT fills at 0, clamped [-2,+2], lazy Mac load), P3 status all done, paper_positions status lowercase, OMS SHORT/COVER directions both go through kill switch. Crypto module v3: 11 files (config/stream/indicators/oms/trader/journal/ml/sentiment/status/weekly_retrain/logger), 2 DB tables, ccxt Binance testnet REST + production WS, 10000 USDT paper, 10 coins (9 active, HYPE unlisted), 3-thread daemon (signal 5m/exit 15s/health 60s), 5m/15m/1h MTF, 20 features (reverted from 28; expansion hurt WF), dominance_ratio=2.0, pure outcome labels (no RSI/EMA entry filters — leakage fixed). LONG model active WF=52.4% (thr MAJOR=0.70, RISKY=0.70), SHORT model active WF=51.2% (thr MAJOR=0.65, RISKY=0.75), both fold-median calibrated. Acceptance gates: LONG folds_gte_3_of_5 + mean>52%; SHORT folds_gte_3_of_5 + mean>50%. PAPER_LONG_ONLY=False, SHORT_MODEL_ACTIVE=True. crypto_config.py centralizes runtime/status values: max positions 6 (major 5/risky 1), CRYPTO_RISK_PCT=0.03, major exposure 20%, risky max position 5% with risky tier cap 10%. logs/crypto_scan_state.json for status timing. Weekly retrain: REJECTED→models/rejected/; backup→models/backup/. Config: .env (BINANCE_API_KEY/SECRET/PAPER_MODE), .env.example şablon. Feature expansion risk: 20→28 features hurt LONG WF — always dry-run test before adding to FEATURE_NAMES.
 
 Last updated: 2026-04-27 — Both LONG (WF=52.4%) and SHORT (WF=51.2%) models promoted to active. Pure outcome labels (RSI/EMA entry-state leakage removed). Feature set reverted to 20 (from 28). Acceptance gates relaxed to folds_gte_3_of_5. PAPER_LONG_ONLY=False, SHORT_MODEL_ACTIVE=True. 5 open SHORT positions running in paper mode. Mac: python3.12, Windows: py -3.12
 

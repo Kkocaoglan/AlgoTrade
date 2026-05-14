@@ -69,133 +69,75 @@ except Exception:
     def send_telegram_alert(msg, **kw): pass
 
 # ── Config ────────────────────────────────────────────────────────────────────
-CRYPTO_CAPITAL_USDT      = 10000.0
-CRYPTO_MAX_POSITIONS     = 6        # major max 5, risky max 1
-CRYPTO_MAX_MAJOR_POSITIONS = 5
-CRYPTO_MAX_RISKY_POSITIONS = 1
-CRYPTO_MAX_EXPOSURE_PER_COIN_MAJOR_PCT = 0.20
-CRYPTO_MAX_EXPOSURE_PER_COIN_RISKY_PCT = 0.10
-CRYPTO_MAX_EXPOSURE_PER_TIER_MAJOR_PCT = 0.80
-CRYPTO_MAX_EXPOSURE_PER_TIER_RISKY_PCT = 0.10
-CRYPTO_MAX_DAILY_TRADES   = 8
-CRYPTO_STOP_LOSS_COOLDOWN_MIN = 60
-CRYPTO_STOP_TRADING_FILE  = Path(__file__).parent / "STOP_TRADING"
-CRYPTO_STALE_PRICE_GUARD_SEC = 15
-CRYPTO_REQUIRE_WS_FOR_ENTRIES = True
-
-CRYPTO_MAJOR = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'SOL/USDT',
-                'AVAX/USDT', 'SUI/USDT', 'DOT/USDT', 'HYPE/USDT']
-CRYPTO_RISKY = ['ONDO/USDT', 'FET/USDT']
-CRYPTO_SYMBOLS = CRYPTO_MAJOR + CRYPTO_RISKY
-THRESHOLD_REPORT_PATH     = Path(__file__).parent / "models" / "threshold_report.json"
-
-MAJOR_MAX_SIZE_PCT       = 0.20     # 20% of capital per major position
-RISKY_MAX_SIZE_PCT       = 0.10     # 10% of capital per risky position (1000 USDT)
-RISKY_MTF_THRESHOLD      = 5        # higher MTF bar for risky coins
-CRYPTO_DAILY_LOSS_LIMIT  = 0.05     # 5% daily loss → halt entries
-CRYPTO_DAILY_MAJOR_TARGET_PCT = 0.015  # +1.5% daily equity target -> lock gains
-CRYPTO_SHADOW_HALT_PCT   = 0.04     # post-lock shadow pnl >= 4% -> stop shadow entries
-CRYPTO_BTC_CRASH_THRESHOLD = -0.03  # BTC 1h drop < -3% → block all entries
-CRYPTO_MTF_THRESHOLD_ML  = 4        # MTF adj ≥ 4 when ML active (raised from 3)
-CRYPTO_MTF_THRESHOLD_RB  = 4        # MTF adj ≥ 4 rule-based only
-CRYPTO_CORR_THRESHOLD    = 0.85     # fallback BTC correlation gate
-CRYPTO_CORR_WINDOW       = 24       # last 24 x 1h bars for correlation gate
-CRYPTO_RISK_PCT          = 0.03     # 3% capital risk per trade
-CRYPTO_ATR_STOP_MULT     = 1.5
-CRYPTO_SIZE_FEAR_MAX     = 1.00     # 100% of per-symbol cap hard cap
-CRYPTO_FG_EXTREME_FEAR   = 20       # below → size × 1.3
-CRYPTO_FG_EXTREME_GREED  = 80       # above → size × 0.7
-ENABLE_MARKET_REGIME_FILTER = True
-REGIME_SYMBOLS_PROXY        = ("BTC/USDT", "ETH/USDT")
-REGIME_1H_LOOKBACK          = 72
-REGIME_RET_LOOKBACK_HOURS   = 24
-REGIME_VOL_LOOKBACK_HOURS   = 24
-REGIME_BREADTH_EMA_COL      = "ema50"
-REGIME_CORR_WINDOW          = 20
-REGIME_CORR_BASELINE_WINDOW = 20
-REGIME_CRASH_BLOCK_LONGS    = True
-REGIME_CRASH_SIZE_MULT      = 0.40
-REGIME_CHOP_MTF_ADD         = 1
-REGIME_CHOP_ML_ADD          = 0.05
-REGIME_CRASH_BTC_RET        = -0.045
-REGIME_CRASH_ETH_RET        = -0.055
-REGIME_CRASH_BTC_RVOL       = 0.028
-REGIME_CRASH_BREADTH_MAX    = 0.35
-REGIME_CRASH_CORR_SPIKE     = 0.15
-REGIME_RISK_ON_BTC_RET      = 0.020
-REGIME_RISK_ON_ETH_RET      = 0.025
-REGIME_RISK_ON_BREADTH_MIN  = 0.60
-REGIME_CHOP_RET_ABS_MAX     = 0.015
-REGIME_CHOP_ETH_RET_ABS_MAX = 0.020
-REGIME_CHOP_BREADTH_MIN     = 0.35
-REGIME_CHOP_BREADTH_MAX     = 0.65
-REGIME_CHOP_CORR_MIN        = 0.50
-ENABLE_RELATIVE_STRENGTH_MTF = True
-RS_BONUS_LOOKBACK_HOURS      = 24
-RS_BONUS_TOP_PCT             = 0.75
-RS_BONUS_BOTTOM_PCT          = 0.25
-RS_MTF_BONUS_POINTS          = 1
-FUNDING_SENTIMENT_THRESHOLD  = 0.0001   # 0.01%
-FUNDING_SIZE_BOOST           = 1.20
-
-COIN_GROUP_POLICIES = {
-    "CORE_MAJOR": {
-        "symbols": {"BTC/USDT", "ETH/USDT", "BNB/USDT"},
-        "max_coin_exposure_pct": 0.20,
-        "stop_pct": 0.022,
-        "target_pct": 0.024,
-        "trail_trigger": 0.015,
-        "trail_pct": 0.012,
-        "partial_take_profit_pct": 0.018,
-        "partial_close_fraction": 0.50,
-        "stop_loss_cooldown_min": 60,
-    },
-    "VOL_MAJOR": {
-        "symbols": {"SOL/USDT", "AVAX/USDT", "SUI/USDT", "DOT/USDT", "HYPE/USDT"},
-        "max_coin_exposure_pct": 0.20,
-        "stop_pct": 0.025,
-        "target_pct": 0.030,
-        "trail_trigger": 0.020,
-        "trail_pct": 0.015,
-        "partial_take_profit_pct": 0.022,
-        "partial_close_fraction": 0.50,
-        "stop_loss_cooldown_min": 75,
-    },
-    "RISKY": {
-        "symbols": {"ONDO/USDT", "FET/USDT"},
-        "max_coin_exposure_pct": 0.05,
-        "stop_pct": 0.030,
-        "target_pct": 0.050,
-        "trail_trigger": 0.030,
-        "trail_pct": 0.020,
-        "partial_take_profit_pct": 0.030,
-        "partial_close_fraction": 0.50,
-        "stop_loss_cooldown_min": 90,
-    },
-}
-
-LEGACY_THRESHOLD_CONFIG = {
-    "MAJOR": {
-        "enabled": True,
-        "selected_threshold": 0.63,
-        "fallback_threshold": 0.63,
-        "no_trade_zone": {
-            "short_below_or_equal": 0.37,
-            "long_above_or_equal": 0.63,
-        },
-        "selection_status": "legacy_fallback",
-    },
-    "RISKY": {
-        "enabled": True,
-        "selected_threshold": 0.72,
-        "fallback_threshold": 0.72,
-        "no_trade_zone": {
-            "short_below_or_equal": 0.28,
-            "long_above_or_equal": 0.72,
-        },
-        "selection_status": "legacy_fallback",
-    },
-}
+from crypto_config import (
+    COIN_GROUP_POLICIES,
+    CRYPTO_ATR_STOP_MULT,
+    CRYPTO_BTC_CRASH_THRESHOLD,
+    CRYPTO_CAPITAL_USDT,
+    CRYPTO_CORR_THRESHOLD,
+    CRYPTO_CORR_WINDOW,
+    CRYPTO_DAILY_LOSS_LIMIT,
+    CRYPTO_DAILY_MAJOR_TARGET_PCT,
+    CRYPTO_FG_EXTREME_FEAR,
+    CRYPTO_FG_EXTREME_GREED,
+    CRYPTO_MAJOR,
+    CRYPTO_MAX_DAILY_TRADES,
+    CRYPTO_MAX_EXPOSURE_PER_COIN_MAJOR_PCT,
+    CRYPTO_MAX_EXPOSURE_PER_COIN_RISKY_PCT,
+    CRYPTO_MAX_EXPOSURE_PER_TIER_MAJOR_PCT,
+    CRYPTO_MAX_EXPOSURE_PER_TIER_RISKY_PCT,
+    CRYPTO_MAX_MAJOR_POSITIONS,
+    CRYPTO_MAX_POSITIONS,
+    CRYPTO_MAX_RISKY_POSITIONS,
+    CRYPTO_MTF_THRESHOLD_ML,
+    CRYPTO_MTF_THRESHOLD_RB,
+    CRYPTO_REQUIRE_WS_FOR_ENTRIES,
+    CRYPTO_RISKY,
+    CRYPTO_RISK_PCT,
+    CRYPTO_SHADOW_HALT_PCT,
+    CRYPTO_SIZE_FEAR_MAX,
+    CRYPTO_STALE_PRICE_GUARD_SEC,
+    CRYPTO_STOP_LOSS_COOLDOWN_MIN,
+    CRYPTO_STOP_TRADING_FILE,
+    CRYPTO_SYMBOLS,
+    ENABLE_MARKET_REGIME_FILTER,
+    ENABLE_RELATIVE_STRENGTH_MTF,
+    FUNDING_SENTIMENT_THRESHOLD,
+    FUNDING_SIZE_BOOST,
+    LEGACY_THRESHOLD_CONFIG,
+    MAJOR_MAX_SIZE_PCT,
+    REGIME_1H_LOOKBACK,
+    REGIME_BREADTH_EMA_COL,
+    REGIME_CHOP_BREADTH_MAX,
+    REGIME_CHOP_BREADTH_MIN,
+    REGIME_CHOP_CORR_MIN,
+    REGIME_CHOP_ETH_RET_ABS_MAX,
+    REGIME_CHOP_ML_ADD,
+    REGIME_CHOP_MTF_ADD,
+    REGIME_CHOP_RET_ABS_MAX,
+    REGIME_CORR_BASELINE_WINDOW,
+    REGIME_CORR_WINDOW,
+    REGIME_CRASH_BLOCK_LONGS,
+    REGIME_CRASH_BREADTH_MAX,
+    REGIME_CRASH_BTC_RET,
+    REGIME_CRASH_BTC_RVOL,
+    REGIME_CRASH_CORR_SPIKE,
+    REGIME_CRASH_ETH_RET,
+    REGIME_CRASH_SIZE_MULT,
+    REGIME_RET_LOOKBACK_HOURS,
+    REGIME_RISK_ON_BREADTH_MIN,
+    REGIME_RISK_ON_BTC_RET,
+    REGIME_RISK_ON_ETH_RET,
+    REGIME_SYMBOLS_PROXY,
+    REGIME_VOL_LOOKBACK_HOURS,
+    RISKY_MAX_SIZE_PCT,
+    RISKY_MTF_THRESHOLD,
+    RS_BONUS_BOTTOM_PCT,
+    RS_BONUS_LOOKBACK_HOURS,
+    RS_MTF_BONUS_POINTS,
+    RS_BONUS_TOP_PCT,
+    THRESHOLD_REPORT_PATH,
+)
 
 # ── Tier helpers ──────────────────────────────────────────────────────────────
 
@@ -1745,7 +1687,7 @@ def _check_btc_correlation(symbol: str, df_alt, direction: str = "long") -> tupl
 def _atr_position_size(df, price: float, fg_val: int,
                        max_size_usdt: float | None = None,
                        capital_base: float = CRYPTO_CAPITAL_USDT) -> float:
-    """Risk 1% of capital per trade. Apply F&G size modifier."""
+    """Risk CRYPTO_RISK_PCT of capital per trade. Apply F&G size modifier."""
     atr = float(df["atr14"].iloc[-1]) if "atr14" in df.columns else 0.0
     hard_cap = ((max_size_usdt if max_size_usdt is not None
                  else capital_base / CRYPTO_MAX_POSITIONS)

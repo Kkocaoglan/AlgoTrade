@@ -51,6 +51,7 @@ from oms import oms, OrderStatus
 from reconciliation import recon
 from logger import algo_log
 from portfolio_risk import PortfolioRisk, MAX_PORTFOLIO_HEAT
+from bist_data_quality import check_entry_price, format_data_quality_block
 from volatility_regime import (
     VolatilityRegime,
     HIGH_VOL_THRESHOLD,
@@ -74,6 +75,30 @@ from meta_labeler import (
     load_meta_model,
     predict_meta_probability,
 )
+from bist_config import (
+    ATR_TARGET_MULT,
+    BUY_THRESHOLD,
+    DAILY_STOP_PCT,
+    DISPLAY_THRESHOLD,
+    DRAWDOWN_HALT_PCT,
+    DRAWDOWN_KILL_PCT,
+    DRAWDOWN_WARN_PCT,
+    MAX_PER_SECTOR,
+    MAX_POS,
+    MAX_POSITION_SIZE,
+    MAX_SHORT_SIZE,
+    MIN_CASH_RESERVE,
+    MODEL_FLIP_THRESHOLD,
+    RISK_PER_TRADE,
+    SHORT_SL_PCT,
+    SHORT_THRESHOLD,
+    SL_PCT,
+    TOTAL_CAPITAL,
+    TRADEABLE_CAPITAL,
+    TRAIL_BE_PCT,
+    TRAIL_DIST_PCT,
+    TRAIL_START_PCT,
+)
 
 # Global instances — shared across all calls in this process
 _portfolio_risk  = PortfolioRisk()
@@ -88,33 +113,14 @@ _meta_closed_trades = 0
 # -- Constants ----------------------------------------------------------------
 TZ             = pytz.timezone("Europe/Istanbul")
 
-# Capital allocation
-TOTAL_CAPITAL    = 100_000   # total portfolio TL
-MIN_CASH_RESERVE = 20_000    # hard floor — never open a trade that breaches this
-TRADEABLE_CAPITAL = 80_000   # TOTAL_CAPITAL - MIN_CASH_RESERVE
-MAX_POSITION_SIZE = 10_000   # hard cap per trade (TL)
-RISK_PER_TRADE   = 0.01      # 1% of TOTAL_CAPITAL = 1,000 TL max loss per trade
-MAX_POS          = 8         # TRADEABLE_CAPITAL / MAX_POSITION_SIZE
+# Capital allocation and core risk constants are imported from bist_config.py.
 CAPITAL          = TOTAL_CAPITAL  # alias used in daily summary % calc
 
-BUY_THRESHOLD        = 0.65    # model prob threshold to open LONG
-DISPLAY_THRESHOLD    = 0.50    # show signals above this each tick
-MODEL_FLIP_THRESHOLD = 0.55    # close LONG if prob drops below this
-SL_PCT               = 0.015   # stop-loss:   -1.5% from entry (initial)
-
 # SHORT selling parameters
-SHORT_THRESHOLD  = 0.65   # prob_sell = 1 - prob_buy; open SHORT if prob_sell >= this
-MAX_SHORT_SIZE   = 5_000  # hard cap per short position (TL) — half of LONG max
 RSI_SHORT_MIN    = 60     # RSI must be > 60 to open SHORT (overbought)
-SHORT_SL_PCT     = 0.015  # stop-loss: +1.5% above entry price for SHORT
 DEDUP_HOURS          = 2       # same-symbol cooldown after close/open (hours)
 HMM_RETRAIN_DAY      = 1
 META_LABELING_ENABLED = False
-
-# 3-tier drawdown circuit breaker
-DRAWDOWN_WARN_PCT  = 0.04   # %4  -- reduce position size to 50%
-DRAWDOWN_HALT_PCT  = 0.08   # %8  -- halt new entries, exits only
-DRAWDOWN_KILL_PCT  = 0.12   # %12 -- close all positions, stop loop
 
 # Sector diversification — local map with Turkish names
 SECTOR_MAP = {
@@ -135,15 +141,6 @@ SECTOR_MAP = {
     "GUBRF": "kimya",       "CIMSA": "cimento",
     "LOGO":  "teknoloji",   "NETAS": "teknoloji",
 }
-MAX_PER_SECTOR = 2   # max concurrent positions per sector
-
-# ATR-based target (replaces fixed TP_PCT=2.5%)
-ATR_TARGET_MULT  = 1.5   # target = entry + ATR * 1.5
-
-# Trailing stop levels
-TRAIL_BE_PCT     = 0.015  # +1.5% profit -> move stop to breakeven
-TRAIL_START_PCT  = 0.020  # +2.0% profit -> start trailing at -1%
-TRAIL_DIST_PCT   = 0.010  # trailing distance below HWM
 
 # Friday EOD warning (no forced close — user decides)
 FRIDAY_WARN_TIME = (17, 30)  # send weekend warning on Fridays at 17:30
@@ -166,7 +163,6 @@ OVERRIDE_VOL_BLOCK = True
 # P3.2 Tail risk protection
 TAIL_RISK_DROP_PCT = 0.03   # GARAN -3% in last 30min → EXTREME override this tick
 TAIL_RISK_PROXY    = "GARAN"
-DAILY_STOP_PCT     = 0.08   # today's equity loss >= 8% of day-start → close all
 BASE_DIR           = Path(__file__).parent
 
 RESULTS        = Path(__file__).parent / "results"
@@ -1411,7 +1407,7 @@ def _log_signal(conn, symbol: str, prob_buy: float, prob_sell: float,
                 regime,
                 gate_result,
                 reason_blocked,
-                1 if prob_buy >= BUY_THRESHOLD else 0,
+                1 if (prob_buy >= BUY_THRESHOLD or prob_sell >= SHORT_THRESHOLD) else 0,
                 1 if trade_opened else 0,
             ),
         )
@@ -1526,6 +1522,13 @@ def scan_and_trade(conn, model, feature_names, calibrator, thresholds,
 
         # Fill = exact market price (no slippage markup)
         entry_fill = price
+        dq = check_entry_price(sym, entry_fill)
+        if not dq.ok:
+            reason = format_data_quality_block(dq)
+            print(f"  [DATA ] {sym} -> SKIP ({reason})")
+            algo_log.risk(f"DATA QUALITY BLOCK {sym}: {reason}")
+            _log_signal(conn, sym, prob_buy, 1-prob_buy, _sig_regime, "BLOCK", dq.code, False)
+            continue
         stop   = round(entry_fill * (1 - SL_PCT), 2)
         target = round(entry_fill + atr * ATR_TARGET_MULT, 2)  # ATR x 1.5
 
@@ -1702,6 +1705,13 @@ def scan_and_trade(conn, model, feature_names, calibrator, thresholds,
             continue
 
         entry_fill = price
+        dq = check_entry_price(sym, entry_fill)
+        if not dq.ok:
+            reason = format_data_quality_block(dq)
+            print(f"  [DATA ] [SHORT] {sym} -> SKIP ({reason})")
+            algo_log.risk(f"DATA QUALITY BLOCK SHORT {sym}: {reason}")
+            _log_signal(conn, sym, prob_buy, prob_sell, _s_regime, "BLOCK", dq.code, False)
+            continue
         stop       = round(entry_fill * (1 + SHORT_SL_PCT), 2)   # above entry
         target     = round(entry_fill - atr * ATR_TARGET_MULT, 2) # below entry
 

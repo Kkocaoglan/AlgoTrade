@@ -16,6 +16,19 @@ from zoneinfo import ZoneInfo
 from crypto_stream     import CryptoStream, CryptoWebSocket, check_symbol_on_exchange
 from crypto_indicators import compute_all, compute_mtf
 from crypto_oms        import CryptoOMS
+from crypto_config import (
+    COIN_GROUP_POLICIES,
+    CRYPTO_BTC_CRASH_THRESHOLD,
+    CRYPTO_CAPITAL_USDT,
+    CRYPTO_MAJOR,
+    CRYPTO_MAX_POSITIONS,
+    CRYPTO_MTF_THRESHOLD_ML,
+    CRYPTO_MTF_THRESHOLD_RB,
+    CRYPTO_RISKY,
+    CRYPTO_SYMBOLS,
+    LEGACY_THRESHOLD_CONFIG,
+    RISKY_MTF_THRESHOLD,
+)
 
 try:
     from crypto_sentiment import sentiment as _fg_sentiment
@@ -34,46 +47,18 @@ try:
 except Exception:
     _ml_dict = None
 
-# ── Universe & tier config (mirrors crypto_trader.py) ────────────────────────
-CRYPTO_CAPITAL_USDT  = 10000.0
-CRYPTO_MAX_POSITIONS = 5
-
-CRYPTO_MAJOR = ["BTC/USDT", "ETH/USDT", "BNB/USDT", "SOL/USDT",
-                "AVAX/USDT", "SUI/USDT", "DOT/USDT", "HYPE/USDT"]
-CRYPTO_RISKY = ["ONDO/USDT", "FET/USDT"]
-CRYPTO_SYMBOLS = CRYPTO_MAJOR + CRYPTO_RISKY
-
-CRYPTO_ML_THRESHOLD   = 0.60
-CRYPTO_MTF_THRESH_ML  = 3
-CRYPTO_MTF_THRESH_RB  = 4
-RISKY_ML_THRESHOLD    = 0.68
-RISKY_MTF_THRESHOLD   = 5
-CRYPTO_BTC_CRASH      = -0.03
+# ── Universe & tier config ───────────────────────────────────────────────────
+# Imported from crypto_config.py so the dashboard mirrors crypto_trader.py.
+CRYPTO_ML_THRESHOLD = LEGACY_THRESHOLD_CONFIG["MAJOR"]["fallback_threshold"]
+RISKY_ML_THRESHOLD = LEGACY_THRESHOLD_CONFIG["RISKY"]["fallback_threshold"]
+CRYPTO_MTF_THRESH_ML = CRYPTO_MTF_THRESHOLD_ML
+CRYPTO_MTF_THRESH_RB = CRYPTO_MTF_THRESHOLD_RB
+CRYPTO_BTC_CRASH = CRYPTO_BTC_CRASH_THRESHOLD
 
 BASE_DIR = Path(__file__).parent
 RESULTS_DIR = BASE_DIR / "results"
 MAJORAFTER_STATE_PATH = RESULTS_DIR / "majorafter_state.json"
 TZ_IST = ZoneInfo("Europe/Istanbul")
-COIN_GROUP_POLICIES = {
-    "CORE_MAJOR": {
-        "symbols": {"BTC/USDT", "ETH/USDT", "BNB/USDT"},
-        "trail_trigger": 0.015,
-        "trail_pct": 0.012,
-        "partial_take_profit_pct": 0.018,
-    },
-    "VOL_MAJOR": {
-        "symbols": {"SOL/USDT", "AVAX/USDT", "SUI/USDT", "DOT/USDT", "HYPE/USDT"},
-        "trail_trigger": 0.020,
-        "trail_pct": 0.015,
-        "partial_take_profit_pct": 0.022,
-    },
-    "RISKY": {
-        "symbols": {"ONDO/USDT", "FET/USDT"},
-        "trail_trigger": 0.030,
-        "trail_pct": 0.020,
-        "partial_take_profit_pct": 0.030,
-    },
-}
 
 
 def get_tier(symbol: str) -> str:
@@ -88,8 +73,26 @@ def get_coin_group(symbol: str) -> str:
 def get_trade_policy(symbol: str) -> dict:
     return COIN_GROUP_POLICIES[get_coin_group(symbol)]
 
+def _model_threshold_for_tier(tier: str) -> float | None:
+    try:
+        tier_model = load_tier_model("long", tier)
+        for payload in (tier_model, _ml_dict):
+            if not payload:
+                continue
+            cfg = payload.get("threshold_config", {}).get(tier, {})
+            threshold = cfg.get("selected_threshold") or cfg.get("fallback_threshold")
+            if threshold is not None:
+                return float(threshold)
+    except Exception:
+        return None
+    return None
+
 def get_ml_threshold(symbol: str) -> float:
-    return RISKY_ML_THRESHOLD if get_tier(symbol) == "RISKY" else CRYPTO_ML_THRESHOLD
+    tier = get_tier(symbol)
+    model_threshold = _model_threshold_for_tier(tier)
+    if model_threshold is not None:
+        return model_threshold
+    return RISKY_ML_THRESHOLD if tier == "RISKY" else CRYPTO_ML_THRESHOLD
 
 def get_mtf_threshold(symbol: str, ml_on: bool) -> int:
     if get_tier(symbol) == "RISKY":
